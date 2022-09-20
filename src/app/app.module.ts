@@ -8,6 +8,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FrameComponent } from './frame/frame.component';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,7 @@ import { FrameComponent } from './frame/frame.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
