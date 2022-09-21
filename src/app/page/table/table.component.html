@@ -9,6 +9,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator #paginator class="mat-elevation-z2" (page)="onPaginatorChange($event)" [length]="datasource.length | async"
+<mat-paginator #paginator class="mat-elevation-z1" (page)="onPaginatorChange($event)" [length]="datasource.length | async"
     [pageSize]="datasource.pageSize | async" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
 </mat-paginator>

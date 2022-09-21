@@ -8,13 +8,13 @@ const routes: Routes = [
     component: FrameComponent,
     children: [
       {
-        path: "dashboard",
+        path: "table",
         loadChildren: () => import('./page/table/table.module')
           .then((pkg) => pkg.TableModule)
       },
       {
         path: "**",
-        redirectTo: "dashboard"
+        redirectTo: "table"
       }
     ]
   },

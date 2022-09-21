@@ -2,10 +2,30 @@
     display: block;
 }
 
+.mat-drawer-container {
+    height: calc(100vh - 64px);
+}
+
+.content {
+    overflow: auto;
+
+    .router-outlet > * {
+        overflow: auto;
+    }
+}
+
+.mat-drawer.mat-sidenav {
+    min-width: 200px;
+}
+
 .mat-toolbar {
-    position: fixed;
+    position: sticky;
     top: 0px;
     left: 0px;
     right: 0px;
-    z-index: 1;
+    z-index: 2;
+
+    .menu-toggle {
+        margin-right: 5px;
+    }
 }

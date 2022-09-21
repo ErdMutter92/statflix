@@ -10,9 +10,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonPipesModule } from './pipes/common-pipes.module';
 import { FrameComponent } from './frame/frame.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Angular Material Imports
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatSidenavModule,
     MatToolbarModule,
     CommonPipesModule,
+    MatIconModule,
+    MatButtonModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

@@ -24,4 +24,8 @@ describe('ToolbarActionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  xit('should clear search upon clicking clear action', () => {});
+  xit('should open filter drawer when action button clicked', () => {});
+  xit('should open visibility drawer when action button clicked', () => {});
 });
