@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { FrameComponent } from './frame.component';
 
@@ -8,7 +10,8 @@ describe('FrameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FrameComponent ]
+      declarations: [ FrameComponent ],
+      imports: [ MatToolbarModule, RouterTestingModule ]
     })
     .compileComponents();
 
@@ -25,12 +28,5 @@ describe('FrameComponent', () => {
     const fixture = TestBed.createComponent(FrameComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('statflix');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(FrameComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('statflix app is running!');
   });
 });
