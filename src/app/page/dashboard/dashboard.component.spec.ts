@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { NetflixTitle } from 'src/app/types/netflixtitle.interface';
+import { provideMockStore } from '@ngrx/store/testing';
+import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
 
 import { DashboardComponent } from './dashboard.component';
@@ -21,11 +23,11 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [ DashboardDataSource, provideMockStore({ initialState }), ],
-      declarations: [ DashboardComponent ],
-      imports: [ NoopAnimationsModule, MatTableModule, MatPaginatorModule ]
+      providers: [DashboardDataSource, provideMockStore({ initialState }),],
+      declarations: [DashboardComponent],
+      imports: [NoopAnimationsModule, CommonPipesModule, MatTableModule, MatSortModule, MatPaginatorModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;

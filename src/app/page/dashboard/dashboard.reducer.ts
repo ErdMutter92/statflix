@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as DashboardActions from './dashboard.actions';
 import { PageState } from 'src/app/types/page.state';
-import { NetflixTitle } from 'src/app/types/netflixtitle.interface';
+import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { datasource } from './dashboard.data';
 
 const initalState: PageState<NetflixTitle> = {
@@ -15,5 +15,8 @@ export const dashboardReducer = createReducer(
     on(DashboardActions.loadPage, (state, { page }) => ({ ...state, page })),
     on(DashboardActions.pageChange, (state, { pageIndex: page, pageSize}) => {
         return { ...state, page, pageSize };
+    }),
+    on(DashboardActions.columnSort, (state, sort) => {
+        return { ...state, sort };
     }),
 );

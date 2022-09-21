@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
-import { NetflixTitle } from 'src/app/types/netflixtitle.interface';
+import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
 import { DashboardDataSource } from './dashboard.datasource';
 import { hot } from 'jasmine-marbles';
 import { selectCurrentPage, selectPageSize, selectTotalCount } from './dashboard.selectors';
 import { CollectionViewer } from '@angular/cdk/collections';
-import { loadPage, pageChange } from './dashboard.actions';
+import { columnSort, loadPage, pageChange } from './dashboard.actions';
 import { PageEvent } from '@angular/material/paginator';
+import { Sort } from 'src/app/types/sort.interface';
 
 describe('DashboardDataSource', () => {
     const initialState: PageState<NetflixTitle> = {
@@ -198,6 +198,17 @@ describe('DashboardDataSource', () => {
             service.paginate(event);
 
             expect(dispatchSpy).toHaveBeenCalledOnceWith(pageChange(event));
+        });
+    });
+
+    describe('columnSort', () => {
+        it('should dispatch a columnSort event to the store', () => {
+            const dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
+            const event: Sort = { direction: 'asc', active: 'cast' };
+
+            service.sort(event);
+
+            expect(dispatchSpy).toHaveBeenCalledOnceWith(columnSort(event));
         });
     });
 })

@@ -1,83 +1,14 @@
-<table mat-table [dataSource]="datasource" class="mat-elevation-z1">
-    <!-- Show ID Column -->
-    <ng-container matColumnDef="show_id">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.show_id}} </td>
-    </ng-container>
-
-    <!-- Type Column -->
-    <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-    </ng-container>
-
-    <!-- Title Column -->
-    <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef> Title </th>
-        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-    </ng-container>
-
-    <!-- Director Column -->
-    <ng-container matColumnDef="director">
-        <th mat-header-cell *matHeaderCellDef> Directors </th>
-        <td mat-cell *matCellDef="let element"> {{element.director}} </td>
-    </ng-container>
-
-    <!-- Cast Column -->
-    <ng-container matColumnDef="cast">
-        <th mat-header-cell *matHeaderCellDef> Cast </th>
-        <td mat-cell *matCellDef="let element"> {{element.cast}} </td>
-    </ng-container>
-
-    <!-- Country Column -->
-    <ng-container matColumnDef="country">
-        <th mat-header-cell *matHeaderCellDef> Country </th>
-        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
-    </ng-container>
-
-    <!-- Date Added Column -->
-    <ng-container matColumnDef="date_added">
-        <th mat-header-cell *matHeaderCellDef> Date Added </th>
-        <td mat-cell *matCellDef="let element"> {{element.date_added}} </td>
-    </ng-container>
-
-    <!-- Release Year Column -->
-    <ng-container matColumnDef="release_year">
-        <th mat-header-cell *matHeaderCellDef> Released </th>
-        <td mat-cell *matCellDef="let element"> {{element.release_year}} </td>
-    </ng-container>
-
-    <!-- Rating Column -->
-    <ng-container matColumnDef="rating">
-        <th mat-header-cell *matHeaderCellDef> Rating </th>
-        <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
-    </ng-container>
-
-    <!-- Duration Column -->
-    <ng-container matColumnDef="duration">
-        <th mat-header-cell *matHeaderCellDef> Duration </th>
-        <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
-    </ng-container>
-
-    <!-- Listed In Column -->
-    <ng-container matColumnDef="listed_in">
-        <th mat-header-cell *matHeaderCellDef> Categories </th>
-        <td mat-cell *matCellDef="let element"> {{element.listed_in}} </td>
-    </ng-container>
-
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+<table mat-table matSort (matSortChange)="onSort($event, paginator)" [dataSource]="datasource" class="mat-elevation-z1">
+    <ng-container *ngFor="let title of displayedColumns">
+        <ng-container [matColumnDef]="title">
+            <th mat-header-cell [mat-sort-header]="title" *matHeaderCellDef> {{ title | deslugify | cammelCase }} </th>
+            <td mat-cell *matCellDef="let element"> {{element[title] | join: ', ' }} </td>
+        </ng-container>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator 
-    (page)="onPaginatorChange($event)"
-    [length]="datasource.length | async"
-    [pageSize]="datasource.pageSize | async"
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    aria-label="Select page">
+<mat-paginator #paginator class="mat-elevation-z2" (page)="onPaginatorChange($event)" [length]="datasource.length | async"
+    [pageSize]="datasource.pageSize | async" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
 </mat-paginator>
