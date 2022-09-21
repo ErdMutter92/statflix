@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardDataSource } from './dashboard.datasource';
+import { TableDataSource } from './table.datasource';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Sort } from 'src/app/types/sort.interface';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-table-page',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class TableComponent implements OnInit {
   public displayedColumns = ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'];
 
   constructor(
-    public datasource: DashboardDataSource,
+    public datasource: TableDataSource,
   ) { }
 
   ngOnInit(): void {

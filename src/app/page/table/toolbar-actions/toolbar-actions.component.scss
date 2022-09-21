@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.spacer {
+    margin-right: auto;
+}
+
+.mat-icon-button {
+    margin-top: 6px;
+}
+
+.search {
+    font-size: 12px;
+    margin-left: 20px;
+    height: 50px;
+
+    ::placeholder {
+        color: white;
+    }
+}

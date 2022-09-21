@@ -1,7 +1,7 @@
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
-import * as DashboardSelectors from './dashboard.selectors';
+import { selectCurrentPage, selectPageSize, selectTotalCount } from './table.selectors';
 
-describe('DashboardSelector', () => {
+describe('TableSelector', () => {
     const item1: NetflixTitle = {
         "show_id": "s1",
         "type": "Movie",
@@ -48,7 +48,7 @@ describe('DashboardSelector', () => {
         it('should return current page', () => {
             const expected: NetflixTitle[] = [item2];
     
-            expect(DashboardSelectors.selectCurrentPage.projector({
+            expect(selectCurrentPage.projector({
                 items: [item1, item2],
                 page: 1,
                 pageSize: 1,
@@ -58,7 +58,7 @@ describe('DashboardSelector', () => {
         it('should return sorted page (desc)', () => {
             const expected: NetflixTitle[] = [item2, item1];
 
-            expect(DashboardSelectors.selectCurrentPage.projector({
+            expect(selectCurrentPage.projector({
                 items: [item1, item2],
                 page: 0,
                 pageSize: 2,
@@ -69,7 +69,7 @@ describe('DashboardSelector', () => {
         it('should return sorted page (asc)', () => {
             const expected: NetflixTitle[] = [item1, item2];
 
-            expect(DashboardSelectors.selectCurrentPage.projector({
+            expect(selectCurrentPage.projector({
                 items: [item1, item2],
                 page: 0,
                 pageSize: 2,
@@ -80,7 +80,7 @@ describe('DashboardSelector', () => {
 
     describe('selectPageSize', () => {
         it('should return pageSize', () => {
-            expect(DashboardSelectors.selectPageSize.projector({
+            expect(selectPageSize.projector({
                 pageSize: 1337,
             })).toBe(1337);
         });
@@ -88,7 +88,7 @@ describe('DashboardSelector', () => {
     
     describe('selectTotalCount', () => {
         it('should return the number of items', () => {
-            expect(DashboardSelectors.selectTotalCount.projector({
+            expect(selectTotalCount.projector({
                 items: [item1, item2],
             })).toBe(2)
         })

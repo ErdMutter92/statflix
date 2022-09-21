@@ -3,13 +3,13 @@ import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
 import { sort as Sort, ISortBy } from 'fast-sort';
 
-export const dashboardFeature = (state: { dashboard: PageState<NetflixTitle> }) => state.dashboard;
+export const tableFeature = (state: { table: PageState<NetflixTitle> }) => state.table;
 
 /**
  * Current set of items for a page
  */
 export const selectCurrentPage = createSelector(
-    dashboardFeature,
+    tableFeature,
     ({ items, page, pageSize, sort }) => {
         let state = items.slice(0); // get a copy of the array
         const start = page * pageSize;
@@ -30,7 +30,7 @@ export const selectCurrentPage = createSelector(
  * Number of items in each page
  */
 export const selectPageSize = createSelector(
-    dashboardFeature,
+    tableFeature,
     ({ pageSize }) => pageSize,
 )
 
@@ -38,6 +38,6 @@ export const selectPageSize = createSelector(
  * Total number of items in the dataset
  */
 export const selectTotalCount = createSelector(
-    dashboardFeature,
+    tableFeature,
     ({ items }) => items.length
 )

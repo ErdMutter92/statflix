@@ -9,8 +9,8 @@ const routes: Routes = [
     children: [
       {
         path: "dashboard",
-        loadChildren: () => import('./page/dashboard/dashboard.module')
-          .then((pkg) => pkg.DashboardModule)
+        loadChildren: () => import('./page/table/table.module')
+          .then((pkg) => pkg.TableModule)
       },
       {
         path: "**",

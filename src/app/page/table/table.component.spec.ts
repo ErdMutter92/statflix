@@ -8,12 +8,12 @@ import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
 
-import { DashboardComponent } from './dashboard.component';
-import { DashboardDataSource } from './dashboard.datasource';
+import { TableComponent } from './table.component';
+import { TableDataSource } from './table.datasource';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('TableComponent', () => {
+  let component: TableComponent;
+  let fixture: ComponentFixture<TableComponent>;
 
   const initialState: PageState<NetflixTitle> = {
     page: 0,
@@ -23,13 +23,13 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [DashboardDataSource, provideMockStore({ initialState }),],
-      declarations: [DashboardComponent],
+      providers: [TableDataSource, provideMockStore({ initialState }),],
+      declarations: [TableComponent],
       imports: [NoopAnimationsModule, CommonPipesModule, MatTableModule, MatSortModule, MatPaginatorModule]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

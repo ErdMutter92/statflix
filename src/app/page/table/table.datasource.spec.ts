@@ -2,15 +2,15 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
-import { DashboardDataSource } from './dashboard.datasource';
+import { TableDataSource } from './table.datasource';
 import { hot } from 'jasmine-marbles';
-import { selectCurrentPage, selectPageSize, selectTotalCount } from './dashboard.selectors';
+import { selectCurrentPage, selectPageSize, selectTotalCount } from './table.selectors';
 import { CollectionViewer } from '@angular/cdk/collections';
-import { columnSort, loadPage, pageChange } from './dashboard.actions';
+import { columnSort, loadPage, pageChange } from './table.actions';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from 'src/app/types/sort.interface';
 
-describe('DashboardDataSource', () => {
+describe('TableDataSource', () => {
     const initialState: PageState<NetflixTitle> = {
         page: 0,
         pageSize: 2,
@@ -108,7 +108,7 @@ describe('DashboardDataSource', () => {
         ]
     };
 
-    let service: DashboardDataSource;
+    let service: TableDataSource;
     let store: MockStore;
 
     beforeEach(async () => {
@@ -129,12 +129,12 @@ describe('DashboardDataSource', () => {
                     value: 3
                 }
               ] }),
-              DashboardDataSource,
+              TableDataSource,
             ],
         });
 
         store = TestBed.inject(MockStore);
-        service = TestBed.inject(DashboardDataSource);
+        service = TestBed.inject(TableDataSource);
     });
 
     it('should contain the current set of page items', () => {

@@ -3,10 +3,10 @@ import {
 } from "@angular/cdk/collections";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { columnSort, loadPage, pageChange } from './dashboard.actions';
+import { columnSort, loadPage, pageChange } from './table.actions';
 import { Store } from '@ngrx/store';
 import { PageState } from "src/app/types/page.state";
-import { selectCurrentPage, selectPageSize, selectTotalCount } from "./dashboard.selectors";
+import { selectCurrentPage, selectPageSize, selectTotalCount } from "./table.selectors";
 import { PageEvent } from "@angular/material/paginator";
 import { NetflixTitle } from "src/app/types/netflix-title.interface";
 import { Sort } from "src/app/types/sort.interface";
@@ -18,13 +18,13 @@ import { ActionableTable } from "src/app/types/actionable-table.interface";
  * duties to the redux store and acts as a service between the two.
  */
 @Injectable()
-export class DashboardDataSource implements DataSource<NetflixTitle>, ActionableTable<NetflixTitle> {
+export class TableDataSource implements DataSource<NetflixTitle>, ActionableTable<NetflixTitle> {
     public readonly items = this.store.select(selectCurrentPage);
     public readonly pageSize = this.store.select(selectPageSize);
     public readonly length = this.store.select(selectTotalCount);
 
     constructor(
-        private store: Store<{ dashboard: PageState<NetflixTitle> }>
+        private store: Store<{ table: PageState<NetflixTitle> }>
     ) {}
 
     connect(collectionViewer: CollectionViewer): Observable<NetflixTitle[]> {
