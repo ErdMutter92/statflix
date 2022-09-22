@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { SearchTableModule } from '../search/search.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [ToolbarActionsComponent],
@@ -14,6 +15,7 @@ import { SearchTableModule } from '../search/search.module';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatTooltipModule,
     SearchTableModule,
   ]
 })

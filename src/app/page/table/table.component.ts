@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { TableDataSource } from './table.datasource';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Sort } from 'src/app/types/sort.interface';
-import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-table-page',
+  selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { read: MatPaginator, static: true })
   private paginator: MatPaginator | undefined;
 

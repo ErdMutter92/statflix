@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
@@ -25,7 +26,7 @@ describe('ToolbarActionsComponent', () => {
     await TestBed.configureTestingModule({
       providers: [ provideMockStore({ initialState })],
       declarations: [ ToolbarActionsComponent ],
-      imports: [ NoopAnimationsModule, SearchTableModule, MatInputModule, MatIconModule ]
+      imports: [ NoopAnimationsModule, SearchTableModule, MatTooltipModule, MatInputModule, MatIconModule ]
     })
     .compileComponents();
 

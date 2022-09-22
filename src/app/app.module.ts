@@ -16,6 +16,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+
+// Angular CDK
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     CommonPipesModule,
     MatIconModule,
+    MatListModule,
     MatButtonModule,
+    LayoutModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.mat-toolbar {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}

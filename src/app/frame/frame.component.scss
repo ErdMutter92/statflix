@@ -28,4 +28,27 @@
     .menu-toggle {
         margin-right: 5px;
     }
+    
+    .title {
+        margin-right: 20px;
+    }
+}
+
+
+.routing {
+    margin-right: 5px;
+    .page {
+        margin: 2px 8px;
+        cursor: pointer;
+
+        &:hover {
+            border-left: 4px solid #6c757d;
+            margin-left: 4px;
+        }
+
+        &.active {
+            border-left: 4px solid #2429b3;
+            margin-left: 4px;
+        }
+    }
 }

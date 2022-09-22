@@ -2,11 +2,17 @@
   <button class="menu-toggle" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>{{ title | cammelCase }}</span>
+  <span class="title">{{ title | cammelCase }}</span>
   <router-outlet name="actions"></router-outlet>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side" opened>Sidenav content</mat-sidenav>
+  <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="showSidenav">
+    <mat-list class="routing">
+      <mat-list-item class="page" [routerLink]="['/dashboard']" routerLinkActive="active"> Dashboard </mat-list-item>
+      <mat-list-item class="page" [routerLink]="['/table']" routerLinkActive="active"> Data Viewer </mat-list-item>
+      <mat-list-item class="page" [routerLink]="['/graphs']" routerLinkActive="active"> Graph Viewer </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
   <mat-sidenav-content class="content">
     <router-outlet></router-outlet>
   </mat-sidenav-content>

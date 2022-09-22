@@ -61,3 +61,11 @@ export const selectTotalCount = createSelector(
         return state.length;
     }
 )
+
+/**
+ * Current search value
+ */
+export const selectSearchTerm = createSelector(
+    tableFeature,
+    ({ search }) => search,
+);

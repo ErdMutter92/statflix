@@ -11,6 +11,8 @@ import {MatSortModule} from '@angular/material/sort'
 import { tableReducer, FEATURE_NAME } from './table.reducer';
 import { CommonPipesModule } from '../../pipes/common-pipes.module';
 import { ToolbarActionsModule } from './toolbar-actions/toolbar-actions.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SearchTableModule } from './search/search.module';
 
 @NgModule({
   providers: [
@@ -27,7 +29,9 @@ import { ToolbarActionsModule } from './toolbar-actions/toolbar-actions.module';
     MatSortModule,
     TableRoutingModule,
     CommonPipesModule,
+    MatSidenavModule,
     StoreModule.forFeature(FEATURE_NAME, tableReducer),
-  ]
+  ],
+  exports: [ TableComponent, SearchTableModule ],
 })
 export class TableModule {}
