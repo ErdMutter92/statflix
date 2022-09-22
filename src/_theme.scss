@@ -1,10 +1,10 @@
-@import '~@angular/material/theming';
+@import '@angular/material/theming';
 @import './variables';
 
 @include mat-core();
 
 $primary: mat-palette($md-tqprox);
-$accent: mat-palette($md-tqaccent, 200, A100, A400);
+$accent: mat-palette($md-tqaccent, 400, A100, A400);
 $warn: mat-palette($mat-red);
 $theme: mat-light-theme($primary, $accent, $warn);
 

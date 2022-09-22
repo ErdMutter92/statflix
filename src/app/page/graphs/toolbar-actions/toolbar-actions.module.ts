@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 import { ToolbarActionsComponent } from './toolbar-actions.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { SearchTableModule } from '../search/search.module';
+import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
-  declarations: [ToolbarActionsComponent],
-  exports: [ToolbarActionsComponent],
+  declarations: [
+    ToolbarActionsComponent
+  ],
   imports: [
     CommonModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule,
     MatTooltipModule,
-    SearchTableModule,
+    MatMenuModule,
+    RouterModule,
   ]
 })
 export class ToolbarActionsModule { }

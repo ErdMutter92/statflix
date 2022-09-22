@@ -25,13 +25,23 @@
     right: 0px;
     z-index: 2;
 
+    &.sidenav-show .title {
+        margin-right: 80px;
+        transition: margin-right 300ms ease;
+    }
+
     .menu-toggle {
         margin-right: 5px;
+    }
+
+    .user-profile {
+        margin-left: 10px;
     }
     
     .title {
         font-family: 'Racing Sans One', cursive;
         margin-right: 20px;
+        transition: margin-right 300ms ease;
     }
 }
 

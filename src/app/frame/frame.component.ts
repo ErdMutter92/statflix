@@ -27,6 +27,10 @@ export class FrameComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  public toggleSidenav() {
+    this.showSidenav = !this.showSidenav;
+  }
+
   public ngOnDestroy() {
     this.onMobileViewChange.unsubscribe();
   }

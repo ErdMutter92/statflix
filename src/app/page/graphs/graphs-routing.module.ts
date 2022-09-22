@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GraphsComponent } from './graphs.component';
+import { ToolbarActionsComponent } from './toolbar-actions/toolbar-actions.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,11 @@ const routes: Routes = [
         path: "",
         component: GraphsComponent
       },
+      {
+        path: "",
+        outlet: 'actions',
+        component: ToolbarActionsComponent
+      }
     ]
   }
 ];

@@ -13,6 +13,10 @@
         font-weight: bold;
     }
 
+    td.cdk-column-show_id {
+        padding-left: 20px;
+    }
+
     .cdk-column-show_id,
     .cdk-column-type {
         width: 80px;
@@ -34,6 +38,10 @@
     td {
         padding: 0px 5px;
         min-width: 70px;
+    }
+
+    td {
+        vertical-align: top;
     }
 }
 

@@ -1,9 +1,15 @@
-<mat-toolbar color="primary" class="mat-elevation-z2">
-  <button class="menu-toggle" mat-icon-button (click)="sidenav.toggle()">
+<mat-toolbar color="primary" class="mat-elevation-z2" [ngClass]="{ 'sidenav-show': showSidenav }">
+  <button class="menu-toggle" mat-icon-button (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
   <span class="title">{{ title | cammelCase }}</span>
   <router-outlet name="actions"></router-outlet>
+  <button mat-mini-fab color="accent" class="user-profile" mat-tooltip="User"  aria-label="Open user menu" [matMenuTriggerFor]="menu">
+    <mat-icon>person</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/login']">Logout</button>
+</mat-menu>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="showSidenav">
