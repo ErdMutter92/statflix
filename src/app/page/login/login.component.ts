@@ -23,7 +23,7 @@ export class LoginComponent {
     '/assets/login-bg-5.jpg',
     '/assets/login-bg-6.jpg',
   ];
- 
+
   public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   public passwordFormControl = new FormControl('', [Validators.required]);
 

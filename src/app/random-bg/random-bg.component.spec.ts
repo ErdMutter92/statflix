@@ -8,9 +8,8 @@ describe('RandomBgComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RandomBgComponent ]
-    })
-    .compileComponents();
+      declarations: [RandomBgComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RandomBgComponent);
     component = fixture.componentInstance;

@@ -4,11 +4,11 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
 @Component({
   selector: 'app-number-cards',
   templateUrl: './number-cards.component.html',
-  styleUrls: ['./number-cards.component.scss']
+  styleUrls: ['./number-cards.component.scss'],
 })
 export class NumberCardsComponent {
   @Input()
-  public data: { name: string, value: number }[] = [];
+  public data: { name: string; value: number }[] = [];
 
   @Input()
   public colors: string[] = [];
@@ -21,5 +21,5 @@ export class NumberCardsComponent {
     selectable: false,
     group: ScaleType.Ordinal,
     domain: this.colors,
-  }
+  };
 }

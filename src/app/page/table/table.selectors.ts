@@ -71,8 +71,7 @@ export const selectNumbersByRating = createSelector(selectTableFeature, ({ items
     return results;
   }, {});
 
-
-  return Object.keys(results).map(key => ({ name: key, value: results[key] }));
+  return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
 });
 
 export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ items }) => {
@@ -83,6 +82,5 @@ export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ 
     return results;
   }, {});
 
-
-  return Object.keys(results).map(key => ({ name: key, value: results[key] }));
+  return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
 });

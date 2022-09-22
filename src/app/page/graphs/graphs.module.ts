@@ -10,6 +10,6 @@ import { TableModule } from '../table/table.module';
 @NgModule({
   declarations: [GraphsComponent, NumberCardsComponent],
   imports: [CommonModule, NgxChartsModule, GraphsRoutingModule, ToolbarActionsModule, TableModule],
-  exports: [GraphsComponent, NumberCardsComponent]
+  exports: [GraphsComponent, NumberCardsComponent],
 })
 export class GraphsModule {}
