@@ -4,7 +4,7 @@ import { FrameComponent } from './frame/frame.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: "app",
     component: FrameComponent,
     children: [
       {
@@ -28,6 +28,15 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: "login",
+    loadChildren: () => import('./page/login/login.module')
+      .then((pkg) => pkg.LoginModule)
+  },
+  {
+    path: "**",
+    redirectTo: "login"
+  }
 ];
 
 @NgModule({
