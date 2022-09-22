@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
-import { SearchTableModule } from '../search/search.module';
 
-import { ToolbarActionsComponent } from './toolbar-actions.component';
+import { SearchComponent } from './search.component';
 
-describe('ToolbarActionsComponent', () => {
-  let component: ToolbarActionsComponent;
-  let fixture: ComponentFixture<ToolbarActionsComponent>;
+describe('SearchComponent', () => {
+  let component: SearchComponent;
+  let fixture: ComponentFixture<SearchComponent>;
 
   const initialState: PageState<NetflixTitle> = {
     displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
@@ -23,13 +24,19 @@ describe('ToolbarActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [ provideMockStore({ initialState })],
-      declarations: [ ToolbarActionsComponent ],
-      imports: [ NoopAnimationsModule, SearchTableModule, MatInputModule, MatIconModule ]
+      declarations: [SearchComponent],
+      providers: [provideMockStore({ initialState })],
+      imports: [
+        NoopAnimationsModule,
+        FormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(ToolbarActionsComponent);
+    fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -37,8 +44,4 @@ describe('ToolbarActionsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  xit('should clear search upon clicking clear action', () => {});
-  xit('should open filter drawer when action button clicked', () => {});
-  xit('should open visibility drawer when action button clicked', () => {});
 });

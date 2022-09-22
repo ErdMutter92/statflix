@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableDataSource } from './table.datasource';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Sort } from 'src/app/types/sort.interface';
+import { distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-table-page',
@@ -9,33 +10,33 @@ import { Sort } from 'src/app/types/sort.interface';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
+  @ViewChild(MatPaginator, { read: MatPaginator, static: true })
+  private paginator: MatPaginator | undefined;
+
   public displayedColumns = ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'];
+
+  private changePageOnItemChange = this.datasource.length.subscribe(() => {
+    this.paginator?.firstPage();
+  });
 
   constructor(
     public datasource: TableDataSource,
   ) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.datasource.loadPage();
   }
 
-  onPaginatorChange(event: PageEvent): void {
+  public paginatorOnChange(event: PageEvent): void {
     this.datasource.paginate(event);
   }
 
-  /**
-   * Upon a sorting event the user is taken to the first page of the
-   * table with their sort applied. This is the prevent the user from
-   * getting lost in the middle of the dataset after the sort.
-   * 
-   * @param event Material Sort event when header element is clicked
-   * @param paginator Material paginator ref
-   */
-  onSort(event: Sort, paginator: MatPaginator): void {
-    // NOTE: to keep the external component's state synced we are deligating the
-    // go to first page to the paginator. This will trigger a change event that
-    // will bubble up to the redux store and change the page's contents.
-    paginator.firstPage();
+  public sortOnChange(event: Sort): void {
+    this.paginator?.firstPage();
     this.datasource.sort(event);
+  }
+
+  public ngOnDestroy() {
+    this.changePageOnItemChange.unsubscribe();
   }
 }

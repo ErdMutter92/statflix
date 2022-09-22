@@ -1,4 +1,4 @@
-<table mat-table matSort (matSortChange)="onSort($event, paginator)" [dataSource]="datasource" class="mat-elevation-z1">
+<table mat-table matSort (matSortChange)="sortOnChange($event)" [dataSource]="datasource" class="mat-elevation-z1">
     <ng-container *ngFor="let title of displayedColumns">
         <ng-container [matColumnDef]="title">
             <th mat-header-cell [mat-sort-header]="title" *matHeaderCellDef> {{ title | deslugify | cammelCase }} </th>
@@ -9,6 +9,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator #paginator class="mat-elevation-z1" (page)="onPaginatorChange($event)" [length]="datasource.length | async"
+<mat-paginator class="mat-elevation-z1" (page)="paginatorOnChange($event)" [length]="datasource.length | async"
     [pageSize]="datasource.pageSize | async" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
 </mat-paginator>

@@ -12,6 +12,8 @@ import { Sort } from 'src/app/types/sort.interface';
 
 describe('TableDataSource', () => {
     const initialState: PageState<NetflixTitle> = {
+        displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+        search: '',
         page: 0,
         pageSize: 2,
         items: [

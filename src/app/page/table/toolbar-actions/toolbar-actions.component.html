@@ -7,9 +7,4 @@
 
 <span class="spacer"></span>
 
-<mat-form-field class="search" appearance="fill">
-    <input #search matInput placeholder="Search" value="">
-    <button *ngIf="search.value" matSuffix mat-icon-button aria-label="Clear" (click)="search.value=''">
-        <mat-icon>close</mat-icon>
-    </button>
-</mat-form-field>
+<app-search></app-search>

@@ -7,6 +7,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
+import { SearchTableModule } from './search/search.module';
 
 import { TableComponent } from './table.component';
 import { TableDataSource } from './table.datasource';
@@ -16,6 +17,8 @@ describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
 
   const initialState: PageState<NetflixTitle> = {
+    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    search: '',
     page: 0,
     pageSize: 5,
     items: []
@@ -25,7 +28,7 @@ describe('TableComponent', () => {
     await TestBed.configureTestingModule({
       providers: [TableDataSource, provideMockStore({ initialState }),],
       declarations: [TableComponent],
-      imports: [NoopAnimationsModule, CommonPipesModule, MatTableModule, MatSortModule, MatPaginatorModule]
+      imports: [NoopAnimationsModule, SearchTableModule, CommonPipesModule, MatTableModule, MatSortModule, MatPaginatorModule]
     })
       .compileComponents();
 
@@ -33,6 +36,10 @@ describe('TableComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  afterEach(() => {
+    component.ngOnDestroy();
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -52,12 +59,12 @@ describe('TableComponent', () => {
     });
   });
 
-  describe('onPaginatorChange', () => {
+  describe('paginatorOnChange', () => {
     it('should paginate with event data', () => {
       spyOn(component.datasource, 'paginate');
       const event: PageEvent = { previousPageIndex: 0, pageIndex: 0, pageSize: 100, length: 200 };
 
-      component.onPaginatorChange(event);
+      component.paginatorOnChange(event);
 
       expect(component.datasource.paginate).toHaveBeenCalledOnceWith(event);
     });

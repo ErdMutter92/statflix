@@ -1,0 +1,13 @@
+.field {
+    font-size: 12px;
+    margin-left: 20px;
+    height: 50px;
+
+    ::placeholder {
+        color: white;
+    }
+
+    .mat-icon-button {
+        font-size: 8px;
+    }
+}
