@@ -19,7 +19,8 @@ const routes: Routes = [
       },
       {
         path: "graphs",
-        component: ɵEmptyOutletComponent
+        loadChildren: () => import('./page/graphs/graphs.module')
+          .then((pkg) => pkg.GraphsModule)
       },
       {
         path: "**",
