@@ -1,7 +1,13 @@
 <mat-form-field class="field" [appearance]="appearance">
-    <input type="search" matInput placeholder="Search" (keyup.enter)="onEnter()"
-        [ngModelOptions]="{ updateOn: 'change' }" [(ngModel)]="value">
-    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
-        <mat-icon>close</mat-icon>
-    </button>
+  <input
+    type="search"
+    matInput
+    placeholder="Search"
+    (keyup.enter)="onEnter()"
+    [ngModelOptions]="{ updateOn: 'change' }"
+    [(ngModel)]="value"
+  />
+  <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+    <mat-icon>close</mat-icon>
+  </button>
 </mat-form-field>

@@ -4,19 +4,30 @@
   </button>
   <span class="title">{{ title | cammelCase }}</span>
   <router-outlet name="actions"></router-outlet>
-  <button mat-mini-fab color="accent" class="user-profile" mat-tooltip="User"  aria-label="Open user menu" [matMenuTriggerFor]="menu">
+  <button
+    mat-mini-fab
+    color="accent"
+    class="user-profile"
+    mat-tooltip="User"
+    aria-label="Open user menu"
+    [matMenuTriggerFor]="menu"
+  >
     <mat-icon>person</mat-icon>
-</button>
-<mat-menu #menu="matMenu">
+  </button>
+  <mat-menu #menu="matMenu">
     <button mat-menu-item [routerLink]="['/login']">Logout</button>
-</mat-menu>
+  </mat-menu>
 </mat-toolbar>
 <mat-sidenav-container>
   <mat-sidenav #sidenav [mode]="sidenavMode" [opened]="showSidenav">
     <mat-list class="routing">
-      <mat-list-item class="page" [routerLink]="['/app/dashboard']" routerLinkActive="active"> Dashboard </mat-list-item>
+      <mat-list-item class="page" [routerLink]="['/app/dashboard']" routerLinkActive="active">
+        Dashboard
+      </mat-list-item>
       <mat-list-item class="page" [routerLink]="['/app/table']" routerLinkActive="active"> Data Viewer </mat-list-item>
-      <mat-list-item class="page" [routerLink]="['/app/graphs']" routerLinkActive="active"> Graph Viewer </mat-list-item>
+      <mat-list-item class="page" [routerLink]="['/app/graphs']" routerLinkActive="active">
+        Graph Viewer
+      </mat-list-item>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content class="content">

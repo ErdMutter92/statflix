@@ -1,53 +1,58 @@
 @import '../../../variables';
 
 :host {
-    display: block;
+  display: block;
 }
 
 .mat-table {
-    width: 100%;
-    margin-bottom: 56px;
-    height: calc(100vh - 56px);
+  width: 100%;
 
-    th {
-        font-weight: bold;
-    }
+  th {
+    font-weight: bold;
+  }
 
-    td.cdk-column-show_id {
-        padding-left: 20px;
-    }
+  td.cdk-column-show_id {
+    padding-left: 20px;
+  }
 
-    .cdk-column-show_id,
-    .cdk-column-type {
-        width: 80px;
-    }
+  .cdk-column-show_id,
+  .cdk-column-type {
+    width: 80px;
+  }
 
-    .cdk-column-title {
-        width: 200px;
-    }
+  .cdk-column-title {
+    width: 200px;
+  }
 
-    .cdk-column-director {
-        width: 180px;
-    }
+  .cdk-column-director {
+    width: 180px;
+  }
 
-    .cdk-column-cast {
-        max-width: 500px;
-    }
+  .cdk-column-cast {
+    max-width: 500px;
+  }
 
-    th,
-    td {
-        padding: 0px 5px;
-        min-width: 70px;
-    }
+  th,
+  td {
+    padding: 0px 5px;
+    min-width: 70px;
+  }
 
-    td {
-        vertical-align: top;
-    }
+  td {
+    vertical-align: top;
+  }
 }
 
-.mat-paginator {
+.table-full {
+  .mat-table {
+    margin-bottom: 56px;
+    height: calc(100vh - 56px);
+  }
+
+  .mat-paginator {
     position: fixed;
     bottom: 0px;
     left: 0px;
     right: 0px;
+  }
 }

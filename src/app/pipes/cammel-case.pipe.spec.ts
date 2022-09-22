@@ -1,7 +1,7 @@
 import { CammelCasePipe } from './cammel-case.pipe';
 
 describe('CammelCasePipe', () => {
-  it('create an instance', () => {  
+  it('create an instance', () => {
     const pipe = new CammelCasePipe();
     expect(pipe).toBeTruthy();
   });

@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
+import { LoginRoutingModule } from './login-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginRoutingModule } from './login-routing.module';
-
-import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +14,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       imports: [
         NoopAnimationsModule,
         FormsModule,
@@ -24,10 +23,9 @@ describe('LoginComponent', () => {
         MatCardModule,
         MatInputModule,
         MatButtonModule,
-        MatFormFieldModule
-      ]
-    })
-    .compileComponents();
+        MatFormFieldModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;

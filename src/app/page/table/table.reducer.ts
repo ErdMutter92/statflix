@@ -7,17 +7,27 @@ import { datasource } from './table.data';
 export const FEATURE_NAME = 'table';
 
 const initalState: PageState<NetflixTitle> = {
-    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
-    pageSize: 10,
-    page: 1,
-    items: datasource,
-    search: ""
+  displayedColumns: [
+    'show_id',
+    'type',
+    'title',
+    'director',
+    'country',
+    'release_year',
+    'rating',
+    'duration',
+    'listed_in',
+  ],
+  pageSize: 10,
+  page: 1,
+  items: datasource,
+  search: '',
 };
 
 export const tableReducer = createReducer(
-    initalState,
-    on(loadPage, (state, { page }) => ({ ...state, page })),
-    on(pageChange, (state, { pageIndex: page, pageSize}) => ({ ...state, page, pageSize })),
-    on(columnSort, (state, sort) => ({ ...state, sort, page: 0 })),
-    on(search, (state, { search }) => ({ ...state, search, page: 0 })),
+  initalState,
+  on(loadPage, (state, { page }): PageState<NetflixTitle> => ({ ...state, page })),
+  on(pageChange, (state, { pageIndex: page, pageSize }): PageState<NetflixTitle> => ({ ...state, page, pageSize })),
+  on(columnSort, (state, sort): PageState<NetflixTitle> => ({ ...state, sort, page: 0 })),
+  on(search, (state, { search }): PageState<NetflixTitle> => ({ ...state, search, page: 0 }))
 );

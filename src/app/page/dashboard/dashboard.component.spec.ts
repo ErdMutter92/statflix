@@ -14,20 +14,30 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
 
   const initialState: PageState<NetflixTitle> = {
-    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    displayedColumns: [
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ],
     search: '',
     page: 0,
     pageSize: 5,
-    items: []
+    items: [],
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState })],
-      declarations: [ DashboardComponent ],
-      imports: [NoopAnimationsModule, TableModule, MatToolbarModule, StoreModule.forRoot({})]
-    })
-    .compileComponents();
+      declarations: [DashboardComponent],
+      imports: [NoopAnimationsModule, TableModule, MatToolbarModule, StoreModule.forRoot({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
@@ -36,5 +46,13 @@ describe('DashboardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain an inline app table', () => {
+    fixture.detectChanges();
+    const appTable = fixture.nativeElement.querySelector('app-table');
+
+    expect(appTable).toBeDefined();
+    expect(appTable.getAttribute('appearence')).toBe('inline');
   });
 });

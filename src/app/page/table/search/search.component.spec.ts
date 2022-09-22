@@ -15,26 +15,30 @@ describe('SearchComponent', () => {
   let fixture: ComponentFixture<SearchComponent>;
 
   const initialState: PageState<NetflixTitle> = {
-    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    displayedColumns: [
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ],
     search: '',
     page: 0,
     pageSize: 5,
-    items: []
+    items: [],
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
       providers: [provideMockStore({ initialState })],
-      imports: [
-        NoopAnimationsModule,
-        FormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatInputModule,
-      ]
-    })
-      .compileComponents();
+      imports: [NoopAnimationsModule, FormsModule, MatButtonModule, MatIconModule, MatInputModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;

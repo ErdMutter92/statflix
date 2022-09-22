@@ -17,20 +17,37 @@ describe('TableComponent', () => {
   let fixture: ComponentFixture<TableComponent>;
 
   const initialState: PageState<NetflixTitle> = {
-    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    displayedColumns: [
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ],
     search: '',
     page: 0,
     pageSize: 5,
-    items: []
+    items: [],
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [TableDataSource, provideMockStore({ initialState }),],
+      providers: [TableDataSource, provideMockStore({ initialState })],
       declarations: [TableComponent],
-      imports: [NoopAnimationsModule, SearchTableModule, CommonPipesModule, MatTableModule, MatSortModule, MatPaginatorModule]
-    })
-      .compileComponents();
+      imports: [
+        NoopAnimationsModule,
+        SearchTableModule,
+        CommonPipesModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TableComponent);
     component = fixture.componentInstance;
@@ -39,14 +56,25 @@ describe('TableComponent', () => {
 
   afterEach(() => {
     component.ngOnDestroy();
-  })
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should define the columns to be displayed by default', () => {
-    expect(component.displayedColumns).toEqual(['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in']);
+    expect(component.displayedColumns).toEqual([
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ]);
   });
 
   describe('ngOnInit', () => {

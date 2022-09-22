@@ -8,9 +8,8 @@ describe('ToolbarActionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToolbarActionsComponent ]
-    })
-    .compileComponents();
+      declarations: [ToolbarActionsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarActionsComponent);
     component = fixture.componentInstance;

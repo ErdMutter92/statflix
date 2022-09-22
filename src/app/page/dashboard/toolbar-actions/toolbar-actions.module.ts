@@ -7,18 +7,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 
-
 @NgModule({
-  declarations: [
-    ToolbarActionsComponent
-  ],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatMenuModule,
-    RouterModule,
-  ]
+  declarations: [ToolbarActionsComponent],
+  imports: [CommonModule, MatButtonModule, MatIconModule, MatTooltipModule, MatMenuModule, RouterModule],
 })
-export class ToolbarActionsModule { }
+export class ToolbarActionsModule {}

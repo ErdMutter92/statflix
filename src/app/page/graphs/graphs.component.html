@@ -1,1 +1,3 @@
-<p>graphs works!</p>
+<ng-container *ngIf="single | async as _single">
+    <app-number-cards [data]="_single"></app-number-cards>
+</ng-container>

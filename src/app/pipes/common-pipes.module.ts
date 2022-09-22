@@ -7,4 +7,4 @@ import { DeslugifyPipe } from './deslugify.pipe';
   declarations: [JoinPipe, CammelCasePipe, DeslugifyPipe],
   exports: [JoinPipe, CammelCasePipe, DeslugifyPipe],
 })
-export class CommonPipesModule { }
+export class CommonPipesModule {}

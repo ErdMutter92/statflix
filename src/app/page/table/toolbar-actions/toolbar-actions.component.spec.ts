@@ -15,20 +15,30 @@ describe('ToolbarActionsComponent', () => {
   let fixture: ComponentFixture<ToolbarActionsComponent>;
 
   const initialState: PageState<NetflixTitle> = {
-    displayedColumns: ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    displayedColumns: [
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ],
     search: '',
     page: 0,
     pageSize: 5,
-    items: []
+    items: [],
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [ provideMockStore({ initialState })],
-      declarations: [ ToolbarActionsComponent ],
-      imports: [ NoopAnimationsModule, SearchTableModule, MatTooltipModule, MatInputModule, MatIconModule ]
-    })
-    .compileComponents();
+      providers: [provideMockStore({ initialState })],
+      declarations: [ToolbarActionsComponent],
+      imports: [NoopAnimationsModule, SearchTableModule, MatTooltipModule, MatInputModule, MatIconModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToolbarActionsComponent);
     component = fixture.componentInstance;

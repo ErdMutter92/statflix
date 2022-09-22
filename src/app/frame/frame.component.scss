@@ -1,65 +1,64 @@
 :host {
-    display: block;
+  display: block;
 }
 
 .mat-drawer-container {
-    height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
 }
 
 .content {
-    overflow: auto;
+  overflow: auto;
 
-    .router-outlet > * {
-        overflow: auto;
-    }
+  .router-outlet > * {
+    overflow: auto;
+  }
 }
 
 .mat-drawer.mat-sidenav {
-    min-width: 200px;
+  min-width: 200px;
 }
 
 .mat-toolbar {
-    position: sticky;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    z-index: 2;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 2;
 
-    &.sidenav-show .title {
-        margin-right: 80px;
-        transition: margin-right 300ms ease;
-    }
+  &.sidenav-show .title {
+    margin-right: 80px;
+    transition: margin-right 300ms ease;
+  }
 
-    .menu-toggle {
-        margin-right: 5px;
-    }
+  .menu-toggle {
+    margin-right: 5px;
+  }
 
-    .user-profile {
-        margin-left: 10px;
-    }
-    
-    .title {
-        font-family: 'Racing Sans One', cursive;
-        margin-right: 20px;
-        transition: margin-right 300ms ease;
-    }
+  .user-profile {
+    margin-left: 10px;
+  }
+
+  .title {
+    font-family: 'Racing Sans One', cursive;
+    margin-right: 20px;
+    transition: margin-right 300ms ease;
+  }
 }
 
-
 .routing {
-    margin-right: 5px;
-    .page {
-        margin: 2px 8px;
-        cursor: pointer;
+  margin-right: 5px;
+  .page {
+    margin: 2px 8px;
+    cursor: pointer;
 
-        &:hover {
-            border-left: 4px solid #6c757d;
-            margin-left: 4px;
-        }
-
-        &.active {
-            border-left: 4px solid #2429b3;
-            margin-left: 4px;
-        }
+    &:hover {
+      border-left: 4px solid #6c757d;
+      margin-left: 4px;
     }
+
+    &.active {
+      border-left: 4px solid #2429b3;
+      margin-left: 4px;
+    }
+  }
 }

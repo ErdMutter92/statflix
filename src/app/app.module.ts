@@ -16,17 +16,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 
 // Angular CDK
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FrameComponent,
-  ],
+  declarations: [AppComponent, FrameComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,11 +40,11 @@ import { MatMenuModule } from '@angular/material/menu';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

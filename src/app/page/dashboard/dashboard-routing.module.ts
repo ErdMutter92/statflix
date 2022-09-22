@@ -5,23 +5,23 @@ import { ToolbarActionsComponent } from './toolbar-actions/toolbar-actions.compo
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     children: [
       {
-        path: "",
-        component: DashboardComponent
+        path: '',
+        component: DashboardComponent,
       },
       {
-        path: "",
+        path: '',
         outlet: 'actions',
-        component: ToolbarActionsComponent
-      }
-    ]
-  }
+        component: ToolbarActionsComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

@@ -9,9 +9,18 @@
     "test": "ng test",
     "test:coverage": "ng test --no-watch --code-coverage",
     "lint": "ng lint",
+    "prettier": "prettier 'src/**/*' --ignore-unknown --write",
     "postinstall": "husky install"
   },
   "private": true,
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "semi": true,
+    "bracketSpacing": true
+  },
   "dependencies": {
     "@angular/animations": "^14.1.0",
     "@angular/cdk": "14.2.2",
@@ -25,6 +34,7 @@
     "@angular/router": "^14.1.0",
     "@angular/service-worker": "^14.1.0",
     "@ngrx/store": "^14.3.1",
+    "@swimlane/ngx-charts": "^20.1.0",
     "fast-sort": "^3.2.0",
     "fuse.js": "^6.6.2",
     "rxjs": "~7.5.0",
@@ -41,10 +51,11 @@
     "@angular/cli": "~14.1.0",
     "@angular/compiler-cli": "^14.1.0",
     "@ngrx/eslint-plugin": "^14.3.1",
+    "@types/d3": "^7.4.0",
     "@types/jasmine": "~4.0.0",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
-    "d3": "^7.6.1",
+    "d3": "^7.4.0",
     "eslint": "^8.23.1",
     "husky": "^8.0.1",
     "jasmine-core": "~4.2.0",
@@ -54,6 +65,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.7.1",
     "typescript": "~4.7.2"
   }
 }

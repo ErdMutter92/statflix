@@ -1,0 +1,33 @@
+:host {
+    display: block;
+}
+
+.bg-container {
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    .bg-image {
+        $blurFilterStrength: 0px;
+
+        width: calc(100% + ($blurFilterStrength * 2));
+        height: calc(100% + ($blurFilterStrength * 2));
+        
+        margin: -#{$blurFilterStrength};
+        
+        -webkit-filter: blur($blurFilterStrength);
+        -moz-filter: blur($blurFilterStrength);
+        -o-filter: blur($blurFilterStrength);
+        -ms-filter: blur($blurFilterStrength);
+        filter: blur($blurFilterStrength);
+    
+        background: no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}

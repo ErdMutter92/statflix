@@ -1,11 +1,22 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .mat-toolbar {
-    min-width: 834px;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+  min-width: 849px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+@media (max-width: 800px) {
+  :host {
+    margin: 0px;
+  }
+
+  .mat-toolbar {
+    min-width: unset;
+    border-radius: 0px;
+  }
 }
