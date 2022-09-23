@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 
 @Component({
@@ -6,7 +6,7 @@ import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
   templateUrl: './gauge.component.html',
   styleUrls: ['./gauge.component.scss'],
 })
-export class GaugeComponent {
+export class GaugeComponent implements OnChanges {
   @Input()
   public data: { name: string; value: number }[] = [];
 
@@ -25,4 +25,10 @@ export class GaugeComponent {
     group: ScaleType.Ordinal,
     domain: this.colors,
   };
+
+  public ngOnChanges({ colors }: SimpleChanges) {
+    if (colors) {
+      this.colorScheme.domain = this.colors;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
@@ -6,7 +6,7 @@ import { Color, ScaleType } from '@swimlane/ngx-charts';
   templateUrl: './number-cards.component.html',
   styleUrls: ['./number-cards.component.scss'],
 })
-export class NumberCardsComponent {
+export class NumberCardsComponent implements OnChanges {
   @Input()
   public data: { name: string; value: number }[] = [];
 
@@ -22,4 +22,10 @@ export class NumberCardsComponent {
     group: ScaleType.Ordinal,
     domain: this.colors,
   };
+
+  public ngOnChanges({ colors }: SimpleChanges) {
+    if (colors) {
+      this.colorScheme.domain = this.colors;
+    }
+  }
 }

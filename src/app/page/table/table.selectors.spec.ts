@@ -1,5 +1,17 @@
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
-import { selectCurrentPage, selectPageSize, selectTotalCount } from './table.selectors';
+import { PageState } from 'src/app/types/page.state';
+import {
+  selectAvailableColumns,
+  selectCurrentPage,
+  selectDisplayedColumns,
+  selectNumbersByRating,
+  selectNumbersByReleaseYear,
+  selectNumbersByReleaseYearTop15,
+  selectPageSize,
+  selectSearchTerm,
+  selectTableFeature,
+  selectTotalCount,
+} from './table.selectors';
 
 describe('TableSelector', () => {
   const item1: NetflixTitle = {
@@ -89,6 +101,126 @@ describe('TableSelector', () => {
           items: [item1, item2],
         })
       ).toBe(2);
+    });
+  });
+
+  describe('selectSearchTerm', () => {
+    it('should return the search term', () => {
+      expect(
+        selectSearchTerm.projector({
+          search: 'search',
+        })
+      ).toBe('search');
+    });
+  });
+
+  describe('selectDisplayedColumns', () => {
+    it('should return the displayed columns', () => {
+      expect(
+        selectDisplayedColumns.projector({
+          displayedColumns: ['show_id', 'type'],
+        })
+      ).toEqual(['show_id', 'type']);
+    });
+  });
+
+  describe('selectAvailableColumns', () => {
+    it('should return the displayed columns', () => {
+      expect(
+        selectAvailableColumns.projector({
+          items: [item1],
+        })
+      ).toEqual(Object.keys(item1));
+    });
+  });
+
+  describe('selectNumbersByRating', () => {
+    it('should return graph dataset of number of shows in each rating', () => {
+      expect(
+        selectNumbersByRating.projector({
+          items: [item1, item2],
+        })
+      ).toEqual([
+        { name: 'PG-13', value: 1 },
+        { name: 'R', value: 1 },
+      ]);
+    });
+  });
+
+  describe('selectNumbersByReleaseYear', () => {
+    it('should return graph dataset of the number of releases in each release year', () => {
+      expect(
+        selectNumbersByReleaseYear.projector({
+          items: [item1, item2],
+        })
+      ).toEqual([
+        { name: '2020', value: 2 }
+      ]);
+    });
+  });
+
+
+
+  describe('selectNumbersByReleaseYearTop15', () => {
+    it('should return graph dataset of the top 15 release years with the most releases in them', () => {
+      expect(
+        selectNumbersByReleaseYearTop15.projector({
+          items: [
+            { release_year: "2022" } as NetflixTitle,
+            { release_year: "2016" } as NetflixTitle,
+            { release_year: "2015" } as NetflixTitle,
+            { release_year: "2015" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+            { release_year: "2012" } as NetflixTitle,
+            { release_year: "2011" } as NetflixTitle,
+            { release_year: "2011" } as NetflixTitle,
+            { release_year: "2010" } as NetflixTitle,
+            { release_year: "2010" } as NetflixTitle,
+            { release_year: "2009" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+            { release_year: "2009" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+            { release_year: "2007" } as NetflixTitle,
+            { release_year: "2019" } as NetflixTitle,
+            { release_year: "2018" } as NetflixTitle,
+            { release_year: "2007" } as NetflixTitle,
+            { release_year: "2014" } as NetflixTitle,
+            { release_year: "2014" } as NetflixTitle,
+            { release_year: "2013" } as NetflixTitle,
+            { release_year: "2013" } as NetflixTitle,
+            { release_year: "2012" } as NetflixTitle,
+            { release_year: "2022" } as NetflixTitle,
+            { release_year: "2021" } as NetflixTitle,
+            { release_year: "2020" } as NetflixTitle,
+            { release_year: "2020" } as NetflixTitle,
+            { release_year: "2019" } as NetflixTitle,
+            { release_year: "2018" } as NetflixTitle,
+            { release_year: "2017" } as NetflixTitle,
+            { release_year: "2017" } as NetflixTitle,
+            { release_year: "2017" } as NetflixTitle,
+            { release_year: "2016" } as NetflixTitle,
+            { release_year: "2008" } as NetflixTitle,
+          ],
+        })
+      ).toEqual([
+        { name: '2022', value: 2 },
+        { name: '2020', value: 2 },
+        { name: '2019', value: 2 },
+        { name: '2018', value: 2 },
+        { name: '2017', value: 3 },
+        { name: '2016', value: 2 },
+        { name: '2015', value: 2 },
+        { name: '2014', value: 2 },
+        { name: '2013', value: 2 },
+        { name: '2012', value: 2 },
+        { name: '2011', value: 2 },
+        { name: '2010', value: 2 },
+        { name: '2009', value: 2 },
+        { name: '2008', value: 6 },
+        { name: '2007', value: 2 },
+      ]);
     });
   });
 });

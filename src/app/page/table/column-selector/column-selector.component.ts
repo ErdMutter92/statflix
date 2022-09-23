@@ -29,7 +29,7 @@ export class ColumnSelectorComponent implements OnInit {
     });
   }
 
-  selectionOnChange({ value }: MatSelectChange) {
+  public selectionOnChange({ value }: MatSelectChange) {
     this.store.dispatch(columnsVisible({ displayedColumns: value }));
   }
 }

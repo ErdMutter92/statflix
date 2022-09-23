@@ -1,7 +1,7 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { columnSort, loadPage, pageChange } from './table.actions';
+import { columnSort, loadPage, pageChange, search } from './table.actions';
 import { Store } from '@ngrx/store';
 import { PageState } from 'src/app/types/page.state';
 import { selectCurrentPage, selectDisplayedColumns, selectPageSize, selectTotalCount } from './table.selectors';
@@ -49,5 +49,9 @@ export class TableDataSource implements DataSource<NetflixTitle>, ActionableTabl
 
   sort(event: Sort) {
     this.store.dispatch(columnSort(event));
+  }
+
+  search(contents: string) {
+    this.store.dispatch(search({ search: contents }));
   }
 }

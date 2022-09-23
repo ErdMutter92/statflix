@@ -3,8 +3,30 @@ import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
 import { sort as Sort, ISortBy } from 'fast-sort';
 import Fuse from 'fuse.js';
+import { SortDirection } from '@angular/material/sort';
 
 const searchOptions = { minMatchCharLength: 1, threshold: 0.05 };
+
+export function sortTableItems<type>(items: type[], propertyName: ISortBy<type>, direction: SortDirection | undefined) {
+  if (direction === 'asc') {
+    return Sort(items).asc(propertyName);
+  } else if (direction === 'desc') {
+    return Sort(items).desc(propertyName);
+  }
+
+  return items;
+}
+
+export function getNumbersByKey<type>(items: type[], propertyName: keyof type, missingLabel: string = 'Missing Value') {
+  const results: { [propertyName: string]: number } = items.reduce((results: any, item, index) => {
+    const key = item[propertyName] ? item[propertyName] : missingLabel;
+    results[key] = (results[key] || 0) + 1;
+
+    return results;
+  }, {});
+
+  return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
+}
 
 export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>('table');
 
@@ -15,16 +37,11 @@ export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>
  * search, sort, and filter. This should be refactored out.
  */
 export const selectCurrentPage = createSelector(selectTableFeature, ({ items, page, pageSize, sort, search }) => {
-  let state = items.slice(0); // get a copy of the array
+  let state: NetflixTitle[] = items.slice(0); // get a copy of the array
   const start = page * pageSize;
   const end = start + pageSize;
 
-  const propertyName = sort?.active as ISortBy<NetflixTitle>;
-  if (sort?.direction === 'asc') {
-    state = Sort(state).asc(propertyName);
-  } else if (sort?.direction === 'desc') {
-    state = Sort(state).desc(propertyName);
-  }
+  state = sortTableItems(state, sort?.active as ISortBy<NetflixTitle>, sort?.direction);
 
   if (search) {
     const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
@@ -63,36 +80,36 @@ export const selectSearchTerm = createSelector(selectTableFeature, ({ search }) 
  */
 export const selectDisplayedColumns = createSelector(selectTableFeature, ({ displayedColumns }) => displayedColumns);
 
+/**
+ * All column names.
+ *
+ * NOTE: this only returns the keys of the first object in the dataset
+ * and would require additional care if our dataset had optional properties
+ * that might not be pressent on the object.
+ */
 export const selectAvailableColumns = createSelector(selectTableFeature, ({ items }) => Object.keys(items[0]));
 
 /**
  * A graph dataset of the number of shows in each rating.
  */
-export const selectNumbersByRating = createSelector(selectTableFeature, ({ items }) => {
-  const results = items.reduce((results: { [countryName: string]: number }, item, index) => {
-    const key = item.rating ? item.rating : 'Missing Raiting';
-    results[key] = (results[key] || 0) + 1;
+export const selectNumbersByRating = createSelector(selectTableFeature, ({ items }) =>
+  getNumbersByKey(items, 'rating', 'Missing Raiting')
+);
 
-    return results;
-  }, {});
-
-  return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
-});
+/**
+ * A graph dataset of the number of releases in each release year.
+ */
+export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ items }) =>
+  getNumbersByKey(items, 'release_year', 'Missing Release Year')
+);
 
 /**
  * A graph dataset of the top 15 release years with the most releases in them.
  */
-export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ items }) => {
-  type result = { [countryName: string]: number };
-  const results = items.reduce((results: result, item, index) => {
-    const key = item.release_year ? item.release_year : 'Missing Release Year';
-    results[key] = (results[key] || 0) + 1;
+export const selectNumbersByReleaseYearTop15 = createSelector(selectTableFeature, ({ items }) => {
+  const numbersByReleaseYear = getNumbersByKey(items, 'release_year', 'Missing Release Year');
 
-    return results;
-  }, {});
-
-  return Object.keys(results)
-    .map((key) => ({ name: key, value: results[key] }))
+  return numbersByReleaseYear
     .sort((a: any, b: any) => {
       // by value to get top spots
       if (a.value < b.value) return 1;

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { LoginService } from './login.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
+export class LoginErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
@@ -29,7 +29,7 @@ export class LoginComponent {
   public emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   public passwordFormControl = new FormControl('', [Validators.required]);
 
-  public matcher = new MyErrorStateMatcher();
+  public matcher = new LoginErrorStateMatcher();
 
   constructor(private loginService: LoginService, private router: Router) {}
 

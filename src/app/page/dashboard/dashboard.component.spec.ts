@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard.component';
 import { StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { hot } from 'jasmine-marbles';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -29,12 +30,19 @@ describe('DashboardComponent', () => {
     search: '',
     page: 0,
     pageSize: 5,
-    items: [],
+    items: [
+      { rating: 'PG' } as NetflixTitle,
+      { rating: 'PG-13' } as NetflixTitle,
+      { rating: 'PG-13' } as NetflixTitle,
+      { rating: 'R' } as NetflixTitle,
+      { rating: 'R' } as NetflixTitle,
+      { rating: 'R' } as NetflixTitle,
+    ],
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      providers: [provideMockStore({ initialState })],
+      providers: [provideMockStore({ initialState: { table: initialState } })],
       declarations: [DashboardComponent],
       imports: [NoopAnimationsModule, TableModule, MatToolbarModule, StoreModule.forRoot({})],
     }).compileComponents();
@@ -54,5 +62,17 @@ describe('DashboardComponent', () => {
 
     expect(appTable).toBeDefined();
     expect(appTable.getAttribute('appearence')).toBe('inline');
+  });
+
+  it('should observe retings from the store', () => {
+    expect(component.ratings).toBeDefined();
+
+    const expected = hot('(0)', [[
+      { name: 'PG', value: 1 },
+      { name: 'PG-13', value: 2},
+      { name: 'R', value: 3 }
+    ]]);
+
+    expect(component.ratings).toBeObservable(expected);
   });
 });

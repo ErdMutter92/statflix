@@ -6,7 +6,7 @@ import { TableDataSource } from './table.datasource';
 import { hot } from 'jasmine-marbles';
 import { selectCurrentPage, selectPageSize, selectTotalCount } from './table.selectors';
 import { CollectionViewer } from '@angular/cdk/collections';
-import { columnSort, loadPage, pageChange } from './table.actions';
+import { columnSort, loadPage, pageChange, search } from './table.actions';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from 'src/app/types/sort.interface';
 
@@ -113,7 +113,7 @@ describe('TableDataSource', () => {
     TestBed.configureTestingModule({
       providers: [
         provideMockStore({
-          initialState: { dashboard: initialState },
+          initialState: { table: initialState },
           selectors: [
             {
               selector: selectCurrentPage,
@@ -161,6 +161,25 @@ describe('TableDataSource', () => {
     expect(service.length).toBeObservable(expected);
   });
 
+  it('should contain the displayed columns', () => {
+    expect(service.displayedColumns).toBeDefined();
+
+    const expected = hot('(0)', [[
+      'show_id',
+      'type',
+      'title',
+      'director',
+      'cast',
+      'country',
+      'release_year',
+      'rating',
+      'duration',
+      'listed_in',
+    ]]);
+
+    expect(service.displayedColumns).toBeObservable(expected);
+  });
+
   describe('connect', () => {
     it('should return the current set of page items', () => {
       const fakeCollectionViewer = {} as CollectionViewer;
@@ -201,7 +220,7 @@ describe('TableDataSource', () => {
     });
   });
 
-  describe('columnSort', () => {
+  describe('sort', () => {
     it('should dispatch a columnSort event to the store', () => {
       const dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
       const event: Sort = { direction: 'asc', active: 'cast' };
@@ -209,6 +228,17 @@ describe('TableDataSource', () => {
       service.sort(event);
 
       expect(dispatchSpy).toHaveBeenCalledOnceWith(columnSort(event));
+    });
+  });
+
+  describe('search', () => {
+    it('should dispatch a search event to the store', () => {
+      const dispatchSpy = spyOn(store, 'dispatch').and.callThrough();
+      const contents: string = 'something';
+
+      service.search(contents);
+
+      expect(dispatchSpy).toHaveBeenCalledOnceWith(search({ search: contents }));
     });
   });
 });

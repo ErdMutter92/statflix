@@ -7,6 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
+import { search } from '../table.actions';
 
 import { SearchComponent } from './search.component';
 
@@ -47,5 +48,54 @@ describe('SearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should default appearence (default: standard)', () => {
+    expect(component.appearance).toBe('standard');
+  });
+
+  it('should default value (default: "")', () => {
+    expect(component.value).toBe('');
+  });
+
+  xdescribe('ngOnInit', () => {
+    it('shhould set the inital search value based on search state', () => {});
+  });
+
+  describe('clear', () => {
+    it('should reset the search value', () => {
+      const searchTerm = 'search';
+      component.value = searchTerm;
+      fixture.detectChanges();
+
+      component.clear();
+
+      expect(component.value).not.toBe(searchTerm);
+      expect(component.value).toBe('');
+    });
+
+    it('should dispatch empty search value to the store', () => {
+      spyOn((component as any).store, 'dispatch');
+      const searchTerm = 'search';
+      component.value = searchTerm;
+      fixture.detectChanges();
+
+      component.clear();
+
+      expect((component as any).store.dispatch).toHaveBeenCalledWith(search({ search: '' }));
+    });
+  });
+
+  describe('onEnter', () => {
+    it('should dispatch search value to the store', () => {
+      spyOn((component as any).store, 'dispatch');
+      const searchTerm = 'search';
+      component.value = searchTerm;
+      fixture.detectChanges();
+
+      component.onEnter();
+
+      expect((component as any).store.dispatch).toHaveBeenCalledWith(search({ search: searchTerm }));
+    });
   });
 });

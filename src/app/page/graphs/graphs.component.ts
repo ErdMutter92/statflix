@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectNumbersByRating, selectNumbersByReleaseYear } from '../table/table.selectors';
+import { selectNumbersByRating, selectNumbersByReleaseYearTop15 } from '../table/table.selectors';
 
 @Component({
   selector: 'app-graphs',
@@ -9,7 +9,7 @@ import { selectNumbersByRating, selectNumbersByReleaseYear } from '../table/tabl
 })
 export class GraphsComponent {
   public ratingsByNumbers = this.store.select(selectNumbersByRating);
-  public releaseYearsByNumbers = this.store.select(selectNumbersByReleaseYear);
+  public releaseYearsByNumbers = this.store.select(selectNumbersByReleaseYearTop15);
 
   constructor(private store: Store) {}
 }

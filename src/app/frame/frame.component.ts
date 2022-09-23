@@ -2,6 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { LoginService } from '../page/login/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-frame',
@@ -14,19 +15,23 @@ export class FrameComponent implements OnDestroy {
   public sidenavMode: MatDrawerMode = 'side';
 
   // Detects desktop vs mobile and sets the sidenav approprately.
-  private onMobileViewChange = this.breakpointObserver
-    .observe(['(min-width: 810px)'])
-    .subscribe((state: BreakpointState) => {
-      if (state.matches) {
-        this.sidenavMode = 'side';
-        this.showSidenav = true;
-      } else {
-        this.sidenavMode = 'over';
-        this.showSidenav = false;
-      }
-    });
+  private onMobileViewChange?: Subscription;
 
   constructor(private breakpointObserver: BreakpointObserver, private loginService: LoginService) {}
+
+  public ngOnInit() {
+    this.onMobileViewChange = this.breakpointObserver
+      .observe(['(min-width: 810px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.sidenavMode = 'side';
+          this.showSidenav = true;
+        } else {
+          this.sidenavMode = 'over';
+          this.showSidenav = false;
+        }
+      });
+  }
 
   /**
    * Sync the sidenav's current state to the frame component's.
@@ -54,6 +59,6 @@ export class FrameComponent implements OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.onMobileViewChange.unsubscribe();
+    this.onMobileViewChange?.unsubscribe();
   }
 }
