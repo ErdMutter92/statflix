@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --browsers Chrome",
     "test:coverage": "ng test --browsers Chrome --no-watch --code-coverage",
-    "ci:test": "ng test --browsers ChromeHeadless",
+    "ci:test": "ng test --browsers ChromeHeadless --no-watch",
     "ci:test:coverage": "ng test --browsers ChromeHeadless --no-watch --code-coverage",
     "lint": "ng lint",
     "prettier": "prettier 'src/**/*' --ignore-unknown --write",

@@ -14,4 +14,4 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - name: npm test (CI)
-        run: npm run ci:test
+        run: npm run ci:test:coverage
