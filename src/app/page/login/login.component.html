@@ -32,12 +32,12 @@
       <mat-error *ngIf="emailFormControl.hasError('incorrect') || passwordFormControl.hasError('incorrect')">
         <span class="incorrect-login">The credentials you have entered are incorrect.</span>
       </mat-error>
-      <a class="forgot" href="/forgot">Forgot Password?</a>
+      <a class="forgot" (click)="forgotPasswordOnClick()">Forgot Password?</a>
       <button mat-flat-button color="primary">Continue</button>
     </form>
   </mat-card>
 </app-random-bg>
 <div class="banner">
-  <span>Username: job@good.company</span>
-  <span>Password: wunderbar</span>
+  <span>Username: user@your.company</span>
+  <span>Password: welcome</span>
 </div>

@@ -4,6 +4,11 @@
   display: block;
 }
 
+.table-options-drawer {
+  width: 300px;
+  height: 100vh;
+}
+
 .mat-table {
   width: 100%;
 
@@ -28,8 +33,10 @@
     width: 180px;
   }
 
-  .cdk-column-cast {
+  .cdk-column-cast,
+  .cdk-column-listed_in {
     max-width: 500px;
+    min-width: 250px;
   }
 
   th,
@@ -54,5 +61,6 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
+    z-index: 3;
   }
 }

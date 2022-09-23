@@ -59,8 +59,10 @@
         margin: 20px 5px;
         font-weight: bold;
         text-decoration: none;
+        color: lighten(#132144, 10%);
 
         &:hover {
+          cursor: pointer;
           text-decoration: underline;
           color: lighten(#132144, 30%);
         }

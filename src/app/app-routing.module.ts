@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, ɵEmptyOutletComponent } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { FrameComponent } from './frame/frame.component';
 
 const routes: Routes = [
   {
     path: 'app',
     component: FrameComponent,
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'dashboard',

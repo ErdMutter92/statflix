@@ -6,10 +6,22 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchTableModule } from '../search/search.module';
+import { ColumnSelectorTableModule } from '../column-selector/column-selector.module';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
-  declarations: [ToolbarActionsComponent],
-  exports: [ToolbarActionsComponent],
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatInputModule, MatTooltipModule, SearchTableModule],
+  declarations: [ToolbarActionsComponent, FilterComponent],
+  exports: [ToolbarActionsComponent, FilterComponent],
+  imports: [
+    CommonModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatTooltipModule,
+    SearchTableModule,
+    ColumnSelectorTableModule,
+  ],
 })
 export class ToolbarActionsModule {}

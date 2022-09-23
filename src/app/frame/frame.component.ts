@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { LoginService } from '../page/login/login.service';
 
 @Component({
   selector: 'app-frame',
@@ -25,7 +26,7 @@ export class FrameComponent implements OnDestroy {
       }
     });
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private loginService: LoginService) {}
 
   /**
    * Sync the sidenav's current state to the frame component's.
@@ -46,6 +47,10 @@ export class FrameComponent implements OnDestroy {
     // TODO: Figure out a less hacky way of getting the graphs to resize
     // on their own
     window.dispatchEvent(new Event('resize'));
+  }
+
+  public logout() {
+    this.loginService.logout();
   }
 
   public ngOnDestroy() {

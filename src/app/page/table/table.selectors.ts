@@ -63,6 +63,8 @@ export const selectSearchTerm = createSelector(selectTableFeature, ({ search }) 
  */
 export const selectDisplayedColumns = createSelector(selectTableFeature, ({ displayedColumns }) => displayedColumns);
 
+export const selectAvailableColumns = createSelector(selectTableFeature, ({ items }) => Object.keys(items[0]));
+
 /**
  * A graph dataset of the number of shows in each rating.
  */

@@ -14,7 +14,7 @@ import { selectSearchTerm } from '../table.selectors';
 })
 export class SearchComponent implements OnInit {
   @Input()
-  public appearance: MatFormFieldAppearance = 'fill';
+  public appearance: MatFormFieldAppearance = 'standard';
 
   public value: string = '';
 

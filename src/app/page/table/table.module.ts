@@ -20,7 +20,6 @@ import { SearchTableModule } from './search/search.module';
   imports: [
     CommonModule,
     MatTableModule,
-    ToolbarActionsModule,
     MatPaginatorModule,
     MatSortModule,
     TableRoutingModule,

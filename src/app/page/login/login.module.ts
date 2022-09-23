@@ -8,9 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RandomBgComponent } from 'src/app/random-bg/random-bg.component';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [LoginComponent, RandomBgComponent],
+  providers: [LoginService],
   imports: [
     CommonModule,
     FormsModule,

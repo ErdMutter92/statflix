@@ -21,11 +21,14 @@ import { MatListModule } from '@angular/material/list';
 // Angular CDK
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatMenuModule } from '@angular/material/menu';
+import { LoginModule } from './page/login/login.module';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [AppComponent, FrameComponent],
   imports: [
     BrowserModule,
+    LoginModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSidenavModule,
@@ -44,7 +47,7 @@ import { MatMenuModule } from '@angular/material/menu';
     }),
     StoreModule.forRoot({}, {}),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

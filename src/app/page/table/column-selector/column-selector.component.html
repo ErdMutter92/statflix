@@ -1,0 +1,6 @@
+<mat-form-field [appearance]="appearance">
+  <mat-label>Displayed Columns</mat-label>
+  <mat-select (selectionChange)="selectionOnChange($event)" [formControl]="columnsControl" multiple>
+    <mat-option *ngFor="let option of options | async" [value]="option">{{ option | deslugify }}</mat-option>
+  </mat-select>
+</mat-form-field>

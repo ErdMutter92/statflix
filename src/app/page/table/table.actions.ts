@@ -13,7 +13,8 @@ export const columnSort = createAction(
   props<{ active: string; direction: 'asc' | 'desc' | '' }>()
 );
 export const search = createAction('[table] search', props<{ search: string }>());
-export const columnVisibility = createAction(
+export const columnsVisible = createAction(
   '[table] column visibility',
-  props<{ name: keyof NetflixTitle; visibility: boolean }>()
+  props<{ displayedColumns: (keyof NetflixTitle)[] }>()
 );
+export const filterColumn = createAction('[table] filter', props<{ columnName: string, value: string }>());

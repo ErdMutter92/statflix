@@ -5,9 +5,18 @@
 }
 
 .mat-toolbar {
-  min-width: 849px;
+  // min-width: 849px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+
+  .spacer {
+    margin-right: auto;
+  }
+
+  app-column-selector {
+    margin-top: 16px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 800px) {

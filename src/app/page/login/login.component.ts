@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -29,15 +31,28 @@ export class LoginComponent {
 
   public matcher = new MyErrorStateMatcher();
 
-  constructor() {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
+  // NOTE: this is not how this would be done in the real world...
+  // just doing this to demo a login page and to have route guards.
   public formOnSubmit(): void {
-    // NOTE: this is not how this would be done in the real world...
-    // just doing this to demo a login page and to have route guards.
-    if (this.emailFormControl.value !== 'job@good.company' || this.passwordFormControl.value !== 'wunderbar') {
-      this.emailFormControl.setErrors({ incorrect: true });
-      this.passwordFormControl.setErrors({ incorrect: true });
-    } else if (this.emailFormControl.value !== 'job@good.company' && this.passwordFormControl.value !== 'wunderbar') {
+    const username = this.emailFormControl.value;
+    const password = this.passwordFormControl.value;
+
+    if (username && password) {
+      const userExists = this.loginService.authenticate(username, password);
+
+      if (!userExists) {
+        this.emailFormControl.setErrors({ incorrect: true });
+        this.passwordFormControl.setErrors({ incorrect: true });
+      } else {
+        this.router.navigateByUrl('/app');
+      }
     }
+  }
+
+  public forgotPasswordOnClick() {
+    this.emailFormControl.setValue('user@your.company');
+    this.passwordFormControl.setValue('welcome');
   }
 }
