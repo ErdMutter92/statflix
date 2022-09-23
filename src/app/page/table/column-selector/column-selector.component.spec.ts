@@ -20,6 +20,7 @@ describe('ColumnSelectorComponent', () => {
     search: '',
     page: 0,
     pageSize: 5,
+    filters: {},
     items: [
       { show_id: 'a', type: 'Movie', rating: 'PG', release_year: '2022' } as NetflixTitle,
       { show_id: 'b', type: 'TV Show', rating: 'PG-13', release_year: '2022' } as NetflixTitle,

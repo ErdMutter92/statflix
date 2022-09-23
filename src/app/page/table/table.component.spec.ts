@@ -46,6 +46,7 @@ describe('TableComponent', () => {
     search: '',
     page: 0,
     pageSize: 1,
+    filters: {},
     items: [
       datasource[0],
       datasource[2],

@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
-import { PageState } from 'src/app/types/page.state';
+import { ColumnFilters, PageState } from 'src/app/types/page.state';
 import { sort as Sort, ISortBy } from 'fast-sort';
 import Fuse from 'fuse.js';
 import { SortDirection } from '@angular/material/sort';
@@ -28,6 +28,32 @@ export function getNumbersByKey<type>(items: type[], propertyName: keyof type, m
   return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
 }
 
+export function filterTableItems(items: NetflixTitle[], filters: ColumnFilters) {
+  const filterPropertyNames = Object.keys(filters);
+
+  // short circit, as there is nothing to do.
+  if (filterPropertyNames.length === 0) return items;
+  
+  /**
+   * 1. The filter is always coming back as an array of strings with values we want to
+   * remove from the table.
+   */
+  return items.filter((item: any) => {
+    // Using filter property names because that list should always be equal to or
+    // smaller then the total number of properties in the item.
+    return filterPropertyNames.every((propertyName: any) => {
+      // We are going to be getting either strings or array of strings.
+      // Just throwing everything into an array now simplifies the logic
+      // later.
+      const values = typeof item[propertyName] === 'string' ? [item[propertyName]] : item[propertyName];
+      const filterValues = filters[propertyName];
+
+      // if the values contain any item in the filter value
+      return filterValues.some((filterValue: string) => values.includes(filterValue));
+    });
+  });
+}
+
 export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>('table');
 
 /**
@@ -36,7 +62,7 @@ export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>
  * TODO: This selector is really heavy from overloading it with
  * search, sort, and filter. This should be refactored out.
  */
-export const selectCurrentPage = createSelector(selectTableFeature, ({ items, page, pageSize, sort, search }) => {
+export const selectCurrentPage = createSelector(selectTableFeature, ({ items, page, pageSize, sort, search, filters }) => {
   let state: NetflixTitle[] = items.slice(0); // get a copy of the array
   const start = page * pageSize;
   const end = start + pageSize;
@@ -47,6 +73,8 @@ export const selectCurrentPage = createSelector(selectTableFeature, ({ items, pa
     const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
     state = fuse.search(search).map((result) => result.item);
   }
+
+  state = filterTableItems(state, filters);
 
   return state.slice(start, end);
 });
@@ -59,13 +87,15 @@ export const selectPageSize = createSelector(selectTableFeature, ({ pageSize }) 
 /**
  * Total number of items in the dataset
  */
-export const selectTotalCount = createSelector(selectTableFeature, ({ items, search }) => {
+export const selectTotalCount = createSelector(selectTableFeature, ({ items, search, filters }) => {
   let state = items.slice(0); // get a copy of the array
 
   if (search) {
     const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
     state = fuse.search(search).map((result) => result.item);
   }
+
+  state = filterTableItems(state, filters);
 
   return state.length;
 });

@@ -29,6 +29,7 @@ describe('GraphsComponent', () => {
     search: '',
     page: 0,
     pageSize: 5,
+    filters: {},
     items: [
       { rating: 'PG', release_year: '2022' } as NetflixTitle,
       { rating: 'PG-13', release_year: '2022' } as NetflixTitle,

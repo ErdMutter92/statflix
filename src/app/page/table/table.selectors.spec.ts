@@ -51,6 +51,7 @@ describe('TableSelector', () => {
       expect(
         selectCurrentPage.projector({
           items: [item1, item2],
+          filters: {},
           page: 1,
           pageSize: 1,
         })
@@ -63,6 +64,7 @@ describe('TableSelector', () => {
       expect(
         selectCurrentPage.projector({
           items: [item1, item2],
+          filters: {},
           page: 0,
           pageSize: 2,
           sort: { active: 'show_id', direction: 'desc' },
@@ -75,6 +77,7 @@ describe('TableSelector', () => {
 
       expect(
         selectCurrentPage.projector({
+          filters: {},
           items: [item1, item2],
           page: 0,
           pageSize: 2,
@@ -82,6 +85,20 @@ describe('TableSelector', () => {
         })
       ).toEqual(expected);
     });
+
+    it('should return filtered page', () => {
+      const expected: NetflixTitle[] = [item2];
+
+      expect(
+        selectCurrentPage.projector({
+          filters: { rating: ['R'] },
+          items: [item1, item2],
+          page: 0,
+          pageSize: 2,
+          sort: { active: 'show_id', direction: 'asc' },
+        })
+      ).toEqual(expected);
+    })
   });
 
   describe('selectPageSize', () => {
@@ -98,9 +115,19 @@ describe('TableSelector', () => {
     it('should return the number of items', () => {
       expect(
         selectTotalCount.projector({
+          filters: {},
           items: [item1, item2],
         })
       ).toBe(2);
+    });
+
+    it('should return the number of items after being filtered', () => {
+      expect(
+        selectTotalCount.projector({
+          filters: { rating: ['PG-13'] },
+          items: [item1, item2],
+        })
+      ).toBe(1);
     });
   });
 

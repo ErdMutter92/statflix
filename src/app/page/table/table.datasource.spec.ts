@@ -27,6 +27,7 @@ describe('TableDataSource', () => {
     search: '',
     page: 0,
     pageSize: 2,
+    filters: {},
     items: [
       {
         show_id: 's1',

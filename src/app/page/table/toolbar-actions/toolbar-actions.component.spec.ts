@@ -27,6 +27,7 @@ describe('ToolbarActionsComponent', () => {
       'duration',
       'listed_in',
     ],
+    filters: {},
     search: '',
     page: 0,
     pageSize: 5,

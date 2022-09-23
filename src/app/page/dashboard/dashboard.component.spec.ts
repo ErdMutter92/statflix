@@ -35,6 +35,7 @@ describe('DashboardComponent', () => {
     search: '',
     page: 0,
     pageSize: 5,
+    filters: {},
     items: [
       { rating: 'PG' } as NetflixTitle,
       { rating: 'PG-13' } as NetflixTitle,
