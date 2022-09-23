@@ -1,13 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { NumberCardModule } from '@swimlane/ngx-charts';
 import { hot } from 'jasmine-marbles';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
+import { GraphsModule } from '../graphs/graphs.module';
 import { SearchTableModule } from './search/search.module';
 
 import { TableComponent } from './table.component';
@@ -56,6 +59,8 @@ describe('TableComponent', () => {
       declarations: [TableComponent],
       imports: [
         NoopAnimationsModule,
+        NumberCardModule,
+        MatSidenavModule,
         SearchTableModule,
         CommonPipesModule,
         MatTableModule,

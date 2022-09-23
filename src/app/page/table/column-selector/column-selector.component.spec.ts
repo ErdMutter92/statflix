@@ -1,10 +1,9 @@
-import { IterableDiffers } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
-import { MatSelectChange } from '@angular/material/select';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { hot } from 'jasmine-marbles';
-import { Subject, take } from 'rxjs';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
@@ -31,7 +30,7 @@ describe('ColumnSelectorComponent', () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
       declarations: [ColumnSelectorComponent],
-      imports: [CommonPipesModule]
+      imports: [NoopAnimationsModule, ReactiveFormsModule, CommonPipesModule, MatSelectModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ColumnSelectorComponent);

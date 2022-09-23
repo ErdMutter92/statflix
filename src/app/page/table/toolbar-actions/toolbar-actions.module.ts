@@ -8,11 +8,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { SearchTableModule } from '../search/search.module';
 import { ColumnSelectorTableModule } from '../column-selector/column-selector.module';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
-  declarations: [ToolbarActionsComponent, FilterComponent],
-  exports: [ToolbarActionsComponent, FilterComponent],
+  declarations: [ToolbarActionsComponent],
+  exports: [ToolbarActionsComponent],
   imports: [
     CommonModule,
     MatBottomSheetModule,

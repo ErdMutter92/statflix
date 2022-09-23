@@ -1,10 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { hot } from 'jasmine-marbles';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { PageState } from 'src/app/types/page.state';
+import { GaugeComponent } from './gauge/gauge.component';
 
 import { GraphsComponent } from './graphs.component';
+import { NumberCardsComponent } from './number-cards/number-cards.component';
 
 describe('GraphsComponent', () => {
   let component: GraphsComponent;
@@ -39,7 +42,8 @@ describe('GraphsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
-      declarations: [GraphsComponent],
+      declarations: [GraphsComponent, NumberCardsComponent, GaugeComponent],
+      imports: [NgxChartsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GraphsComponent);

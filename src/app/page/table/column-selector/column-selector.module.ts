@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from '../table.module';
 import { CommonPipesModule } from 'src/app/pipes/common-pipes.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [ColumnSelectorComponent],

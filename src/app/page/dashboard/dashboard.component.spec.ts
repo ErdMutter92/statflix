@@ -9,6 +9,11 @@ import { StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { hot } from 'jasmine-marbles';
+import { GraphsModule } from '../graphs/graphs.module';
+import { ColumnSelectorComponent } from '../table/column-selector/column-selector.component';
+import { DeslugifyPipe } from 'src/app/pipes/deslugify.pipe';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -43,8 +48,8 @@ describe('DashboardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
-      declarations: [DashboardComponent],
-      imports: [NoopAnimationsModule, TableModule, MatToolbarModule, StoreModule.forRoot({})],
+      declarations: [DashboardComponent, ColumnSelectorComponent, DeslugifyPipe],
+      imports: [NoopAnimationsModule, ReactiveFormsModule, TableModule, GraphsModule, MatToolbarModule, MatSelectModule, StoreModule.forRoot({})],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);

@@ -61,12 +61,14 @@ describe('FrameComponent', () => {
     expect(toolbarTitle.textContent).toContain('Statflix');
   });
 
-  it('should default showSidenav (default: true)', () => {
-    expect(component.showSidenav).toBeTrue();
+  it('should define showSidenav', () => {
+    const expected = window.innerWidth >= 810;
+    expect(component.showSidenav).toBe(expected);
   });
 
-  it('should default sidenavMode (default: side)', () => {
-    expect(component.sidenavMode).toBe('side');
+  it('should define sidenavMode', () => {
+    const expected = window.innerWidth >= 810 ? 'side' : 'over';
+    expect(component.sidenavMode).toBe(expected);
   });
 
   describe('ngOnInit', () => {

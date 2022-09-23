@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginService } from './login.service';
+import { RandomBgComponent } from 'src/app/random-bg/random-bg.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -16,7 +17,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [LoginService],
-      declarations: [LoginComponent],
+      declarations: [LoginComponent, RandomBgComponent],
       imports: [
         NoopAnimationsModule,
         FormsModule,

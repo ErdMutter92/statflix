@@ -13,4 +13,5 @@ jobs:
           node-version: 'lts/*'
       - run: npm ci
       - run: npm run lint
-      - run: npm run test --browsers PhantomJS
+      - name: npm test (CI)
+        run: npm run ci:test

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { LoginService } from '../page/login/login.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './frame.component.html',
   styleUrls: ['./frame.component.scss'],
 })
-export class FrameComponent implements OnDestroy {
+export class FrameComponent implements OnInit, OnDestroy {
   public title: string = 'statflix';
   public showSidenav: boolean = true;
   public sidenavMode: MatDrawerMode = 'side';
