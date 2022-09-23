@@ -27,8 +27,25 @@ export class FrameComponent implements OnDestroy {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
+  /**
+   * Sync the sidenav's current state to the frame component's.
+   * 
+   * @param event boolean flag representing the mat-sidenav's current opened state.
+   */
+  public sidenavOnOpenedChange(event: boolean): void {
+    this.showSidenav = event;
+  }
+
   public toggleSidenav() {
     this.showSidenav = !this.showSidenav;
+
+    // NOTE: ngx-charts is unable to detect when the parrent container
+    // changes size after the inital load, but triggers when a page
+    // resize event is triggered on the window. This addresses that bug
+    // in a timely manner.
+    // TODO: Figure out a less hacky way of getting the graphs to resize
+    // on their own
+    window.dispatchEvent(new Event('resize'));
   }
 
   public ngOnDestroy() {

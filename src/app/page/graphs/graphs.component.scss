@@ -2,9 +2,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0px auto;
+}
+
+.section-title {
+  margin: 15px;
 }
 
 .container {
   display: flex;
   flex-direction: row;
+}
+
+app-gauge {
+  height: 500px;
 }

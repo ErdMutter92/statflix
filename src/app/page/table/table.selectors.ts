@@ -16,7 +16,7 @@ export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>
  */
 export const selectCurrentPage = createSelector(
   selectTableFeature,
-  ({ items, page, pageSize, sort, search, displayedColumns }) => {
+  ({ items, page, pageSize, sort, search }) => {
     let state = items.slice(0); // get a copy of the array
     const start = page * pageSize;
     const end = start + pageSize;
@@ -45,7 +45,7 @@ export const selectPageSize = createSelector(selectTableFeature, ({ pageSize }) 
 /**
  * Total number of items in the dataset
  */
-export const selectTotalCount = createSelector(selectTableFeature, ({ items, search, displayedColumns }) => {
+export const selectTotalCount = createSelector(selectTableFeature, ({ items, search }) => {
   let state = items.slice(0); // get a copy of the array
 
   if (search) {
@@ -61,8 +61,14 @@ export const selectTotalCount = createSelector(selectTableFeature, ({ items, sea
  */
 export const selectSearchTerm = createSelector(selectTableFeature, ({ search }) => search);
 
+/**
+ * Displayed columns
+ */
 export const selectDisplayedColumns = createSelector(selectTableFeature, ({ displayedColumns }) => displayedColumns);
 
+/**
+ * A graph dataset of the number of shows in each rating.
+ */
 export const selectNumbersByRating = createSelector(selectTableFeature, ({ items }) => {
   const results = items.reduce((results: { [countryName: string]: number }, item, index) => {
     const key = item.rating ? item.rating : 'Missing Raiting';
@@ -74,13 +80,29 @@ export const selectNumbersByRating = createSelector(selectTableFeature, ({ items
   return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
 });
 
+/**
+ * A graph dataset of the top 15 release years with the most releases in them.
+ */
 export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ items }) => {
-  const results = items.reduce((results: { [countryName: string]: number }, item, index) => {
+  type result = { [countryName: string]: number };
+  const results = items.reduce((results: result, item, index) => {
     const key = item.release_year ? item.release_year : 'Missing Release Year';
     results[key] = (results[key] || 0) + 1;
 
     return results;
   }, {});
 
-  return Object.keys(results).map((key) => ({ name: key, value: results[key] }));
+  return Object.keys(results)
+    .map((key) => ({ name: key, value: results[key] }))
+    .sort((a: any, b: any) => { // by value to get top spots
+      if (a.value < b.value) return 1;
+      if (a.value > b.value) return -1;
+      return 0;
+    })
+    .slice(0, 15)
+    .sort((a: any, b: any) => { // by year to place in order
+      if (a.name < b.name) return 1;
+      if (a.name > b.name) return -1;
+      return 0;
+    });
 });

@@ -1,3 +1,9 @@
-<ng-container *ngIf="single | async as _single">
-  <app-number-cards [data]="_single"></app-number-cards>
+<ng-container *ngIf="ratingsByNumbers | async as _ratingsByNumbers">
+  <h2 class="section-title">Ratings By The Numbers</h2>
+  <app-number-cards [data]="_ratingsByNumbers"></app-number-cards>
+</ng-container>
+
+<ng-container *ngIf="releaseYearsByNumbers | async as _releaseYearsByNumbers">
+  <h2 class="section-title">Top 15 Release Years</h2>
+  <app-gauge [data]="_releaseYearsByNumbers"></app-gauge>
 </ng-container>

@@ -1,4 +1,6 @@
-<app-graphs></app-graphs>
+<ng-container *ngIf="ratings | async as _ratings">
+  <app-number-cards [data]="_ratings"></app-number-cards>
+</ng-container>
 
 <mat-toolbar color="accent">
   <app-search appearance="outline"></app-search>

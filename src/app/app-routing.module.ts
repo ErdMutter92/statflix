@@ -8,12 +8,12 @@ const routes: Routes = [
     component: FrameComponent,
     children: [
       {
-        path: 'table',
-        loadChildren: () => import('./page/table/table.module').then((pkg) => pkg.TableModule),
-      },
-      {
         path: 'dashboard',
         loadChildren: () => import('./page/dashboard/dashboard.module').then((pkg) => pkg.DashboardModule),
+      },
+      {
+        path: 'table',
+        loadChildren: () => import('./page/table/table.module').then((pkg) => pkg.TableModule),
       },
       {
         path: 'graphs',
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'table',
+        redirectTo: 'dashboard',
       },
     ],
   },
