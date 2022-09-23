@@ -14,28 +14,25 @@ export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>
  * TODO: This selector is really heavy from overloading it with
  * search, sort, and filter. This should be refactored out.
  */
-export const selectCurrentPage = createSelector(
-  selectTableFeature,
-  ({ items, page, pageSize, sort, search }) => {
-    let state = items.slice(0); // get a copy of the array
-    const start = page * pageSize;
-    const end = start + pageSize;
+export const selectCurrentPage = createSelector(selectTableFeature, ({ items, page, pageSize, sort, search }) => {
+  let state = items.slice(0); // get a copy of the array
+  const start = page * pageSize;
+  const end = start + pageSize;
 
-    const propertyName = sort?.active as ISortBy<NetflixTitle>;
-    if (sort?.direction === 'asc') {
-      state = Sort(state).asc(propertyName);
-    } else if (sort?.direction === 'desc') {
-      state = Sort(state).desc(propertyName);
-    }
-
-    if (search) {
-      const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
-      state = fuse.search(search).map((result) => result.item);
-    }
-
-    return state.slice(start, end);
+  const propertyName = sort?.active as ISortBy<NetflixTitle>;
+  if (sort?.direction === 'asc') {
+    state = Sort(state).asc(propertyName);
+  } else if (sort?.direction === 'desc') {
+    state = Sort(state).desc(propertyName);
   }
-);
+
+  if (search) {
+    const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
+    state = fuse.search(search).map((result) => result.item);
+  }
+
+  return state.slice(start, end);
+});
 
 /**
  * Number of items in each page
@@ -94,13 +91,15 @@ export const selectNumbersByReleaseYear = createSelector(selectTableFeature, ({ 
 
   return Object.keys(results)
     .map((key) => ({ name: key, value: results[key] }))
-    .sort((a: any, b: any) => { // by value to get top spots
+    .sort((a: any, b: any) => {
+      // by value to get top spots
       if (a.value < b.value) return 1;
       if (a.value > b.value) return -1;
       return 0;
     })
     .slice(0, 15)
-    .sort((a: any, b: any) => { // by year to place in order
+    .sort((a: any, b: any) => {
+      // by year to place in order
       if (a.name < b.name) return 1;
       if (a.name > b.name) return -1;
       return 0;

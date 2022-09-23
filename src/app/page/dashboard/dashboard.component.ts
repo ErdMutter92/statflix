@@ -9,6 +9,6 @@ import { selectNumbersByRating } from '../table/table.selectors';
 })
 export class DashboardComponent {
   public ratings = this.store.select(selectNumbersByRating);
-  
+
   constructor(private store: Store) {}
 }

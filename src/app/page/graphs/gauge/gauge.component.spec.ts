@@ -8,9 +8,8 @@ describe('GaugeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GaugeComponent ]
-    })
-    .compileComponents();
+      declarations: [GaugeComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GaugeComponent);
     component = fixture.componentInstance;

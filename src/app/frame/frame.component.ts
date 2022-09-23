@@ -29,7 +29,7 @@ export class FrameComponent implements OnDestroy {
 
   /**
    * Sync the sidenav's current state to the frame component's.
-   * 
+   *
    * @param event boolean flag representing the mat-sidenav's current opened state.
    */
   public sidenavOnOpenedChange(event: boolean): void {

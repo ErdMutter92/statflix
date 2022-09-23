@@ -4,7 +4,7 @@ import { Color, ScaleType, LegendPosition } from '@swimlane/ngx-charts';
 @Component({
   selector: 'app-gauge',
   templateUrl: './gauge.component.html',
-  styleUrls: ['./gauge.component.scss']
+  styleUrls: ['./gauge.component.scss'],
 })
 export class GaugeComponent {
   @Input()
