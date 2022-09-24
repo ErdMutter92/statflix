@@ -162,6 +162,53 @@ describe('TableDataSource', () => {
     expect(service.length).toBeObservable(expected);
   });
 
+  it('should contain the types', () => {
+    expect(service.types).toBeDefined();
+
+    const expected = hot('(0)', [['Movie', 'TV Show']]);
+
+    expect(service.types).toBeObservable(expected);
+  });
+
+  it('should contain the directors', () => {
+    expect(service.directors).toBeDefined();
+
+    const expected = hot('(0)', [['Kirsten Johnson', 'Julien Leclercq']]);
+
+    expect(service.directors).toBeObservable(expected);
+  });
+
+  it('should contain the releaseYear', () => {
+    expect(service.releaseYear).toBeDefined();
+
+    const expected = hot('(0)', [['2020', '2021']]);
+
+    expect(service.releaseYear).toBeObservable(expected);
+  });
+
+  it('should contain the ratings', () => {
+    expect(service.ratings).toBeDefined();
+
+    const expected = hot('(0)', [['PG-13', 'TV-MA']]);
+
+    expect(service.ratings).toBeObservable(expected);
+  });
+
+  it('should contain the listedIn', () => {
+    expect(service.listedIn).toBeDefined();
+
+    const expected = hot('(0)', [[
+      'Documentaries',
+      'International TV Shows',
+      'TV Dramas',
+      'TV Mysteries',
+      'Crime TV Shows',
+      'TV Action & Adventure'
+    ]]);
+
+    expect(service.listedIn).toBeObservable(expected);
+  });
+
   it('should contain the displayed columns', () => {
     expect(service.displayedColumns).toBeDefined();
 

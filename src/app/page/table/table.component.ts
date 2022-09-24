@@ -13,6 +13,7 @@ export class TableComponent implements OnInit, OnDestroy {
   public appearence: 'inline' | 'full' = 'full';
 
   public displayedColumns = this.datasource.displayedColumns;
+  public showSettings = false;
 
   @ViewChild(MatPaginator, { read: MatPaginator, static: true })
   private paginator: MatPaginator | undefined;

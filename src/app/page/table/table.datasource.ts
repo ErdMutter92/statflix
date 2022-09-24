@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { columnSort, loadPage, pageChange, search } from './table.actions';
 import { Store } from '@ngrx/store';
 import { PageState } from 'src/app/types/page.state';
-import { selectCurrentPage, selectDisplayedColumns, selectPageSize, selectTotalCount } from './table.selectors';
+import { selectCurrentPage, selectDirectors, selectDisplayedColumns, selectListedIn, selectPageSize, selectRatings, selectReleaseYear, selectShowSettings, selectTotalCount, selectTypes } from './table.selectors';
 import { PageEvent } from '@angular/material/paginator';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { Sort } from 'src/app/types/sort.interface';
@@ -21,6 +21,14 @@ export class TableDataSource implements DataSource<NetflixTitle>, ActionableTabl
   public readonly pageSize = this.store.select(selectPageSize);
   public readonly length = this.store.select(selectTotalCount);
   public readonly displayedColumns = this.store.select(selectDisplayedColumns);
+
+  public readonly showSettings = this.store.select(selectShowSettings);
+
+  public readonly types = this.store.select(selectTypes);
+  public readonly directors = this.store.select(selectDirectors);
+  public readonly releaseYear = this.store.select(selectReleaseYear);
+  public readonly ratings = this.store.select(selectRatings);
+  public readonly listedIn = this.store.select(selectListedIn);
 
   constructor(private store: Store) {}
 

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { addFilterColumn, columnSort, columnsVisible, loadPage, pageChange, removeFilterColumn, search } from './table.actions';
+import { addFilterColumn, columnSort, columnsVisible, loadPage, pageChange, removeFilterColumn, search, toggleTableSettings } from './table.actions';
 import { PageState } from 'src/app/types/page.state';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { datasource } from './table.data';
@@ -12,6 +12,7 @@ const initalState: PageState<NetflixTitle> = {
   page: 1,
   items: datasource,
   search: '',
+  showSettings: false,
   filters: {},
 };
 
@@ -34,4 +35,5 @@ export const tableReducer = createReducer(
     const { [columnName]: omit, ...filters } = state.filters;
     return {...state, filters };
   }),
+  on(toggleTableSettings, (state): PageState<NetflixTitle> => ({...state, showSettings: !state.showSettings })),
 );

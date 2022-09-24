@@ -1,6 +1,32 @@
 <div [ngClass]="{ 'table-full': appearence === 'full' }">
   <mat-sidenav-container>
-    <mat-sidenav class="table-options-drawer" mode="over" position="end" [opened]="false">Sidenav content</mat-sidenav>
+    <mat-sidenav class="table-options-drawer" mode="over" position="end" [opened]="datasource.showSettings | async">
+      <ng-container *ngIf="datasource.showSettings | async">
+        <ng-container *ngIf="datasource.types | async as _types">
+          <app-column-filter [columnName]="'type'" [options]="_types"></app-column-filter>
+        </ng-container>
+
+        <ng-container *ngIf="datasource.directors | async as _directors">
+          <app-column-filter [columnName]="'director'" [options]="_directors"></app-column-filter>
+        </ng-container>
+
+        <ng-container *ngIf="datasource.releaseYear | async as _releaseYear">
+          <app-column-filter [columnName]="'release_year'" [options]="_releaseYear"></app-column-filter>
+        </ng-container>
+
+        <ng-container *ngIf="datasource.ratings | async as _ratings">
+          <app-column-filter [columnName]="'rating'" [options]="_ratings"></app-column-filter>
+        </ng-container>
+
+        <ng-container *ngIf="datasource.listedIn | async as _listedIn">
+          <app-column-filter [columnName]="'listed_in'" [options]="_listedIn"></app-column-filter>
+        </ng-container>
+
+        <ng-container *ngIf="datasource.listedIn | async as _listedIn">
+          <app-column-filter [columnName]="'listed_in'" [options]="_listedIn"></app-column-filter>
+        </ng-container>
+      </ng-container>
+    </mat-sidenav>
     <mat-sidenav-content>
       <table
         mat-table

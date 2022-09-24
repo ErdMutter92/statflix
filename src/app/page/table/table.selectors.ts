@@ -33,11 +33,7 @@ export function filterTableItems(items: NetflixTitle[], filters: ColumnFilters) 
 
   // short circit, as there is nothing to do.
   if (filterPropertyNames.length === 0) return items;
-  
-  /**
-   * 1. The filter is always coming back as an array of strings with values we want to
-   * remove from the table.
-   */
+
   return items.filter((item: any) => {
     // Using filter property names because that list should always be equal to or
     // smaller then the total number of properties in the item.
@@ -45,7 +41,7 @@ export function filterTableItems(items: NetflixTitle[], filters: ColumnFilters) 
       // We are going to be getting either strings or array of strings.
       // Just throwing everything into an array now simplifies the logic
       // later.
-      const values = typeof item[propertyName] === 'string' ? [item[propertyName]] : item[propertyName];
+      const values = item[propertyName] instanceof Array ? item[propertyName] : [item[propertyName]];
       const filterValues = filters[propertyName];
 
       // if the values contain any item in the filter value
@@ -62,22 +58,25 @@ export const selectTableFeature = createFeatureSelector<PageState<NetflixTitle>>
  * TODO: This selector is really heavy from overloading it with
  * search, sort, and filter. This should be refactored out.
  */
-export const selectCurrentPage = createSelector(selectTableFeature, ({ items, page, pageSize, sort, search, filters }) => {
-  let state: NetflixTitle[] = items.slice(0); // get a copy of the array
-  const start = page * pageSize;
-  const end = start + pageSize;
+export const selectCurrentPage = createSelector(
+  selectTableFeature,
+  ({ items, page, pageSize, sort, search, filters }) => {
+    let state: NetflixTitle[] = items.slice(0); // get a copy of the array
+    const start: number = page * pageSize;
+    const end: number = start + pageSize;
 
-  state = sortTableItems(state, sort?.active as ISortBy<NetflixTitle>, sort?.direction);
+    state = sortTableItems(state, sort?.active as ISortBy<NetflixTitle>, sort?.direction);
 
-  if (search) {
-    const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
-    state = fuse.search(search).map((result) => result.item);
+    if (search) {
+      const fuse = new Fuse(state, { ...searchOptions, keys: Object.keys(items[0]) });
+      state = fuse.search(search).map((result) => result.item);
+    }
+
+    state = filterTableItems(state, filters);
+
+    return state.slice(start, end);
   }
-
-  state = filterTableItems(state, filters);
-
-  return state.slice(start, end);
-});
+);
 
 /**
  * Number of items in each page
@@ -154,3 +153,53 @@ export const selectNumbersByReleaseYearTop15 = createSelector(selectTableFeature
       return 0;
     });
 });
+
+/**
+ * Unique set of show id provided by the dataset
+ */
+export const selectShowId = createSelector(selectTableFeature, ({ items }) => {
+  return Array.from(new Set(items.map((item) => item.show_id)));
+});
+
+/**
+ * Unique set of types provided by the dataset
+ */
+export const selectTypes = createSelector(selectTableFeature, ({ items }) => {
+  return Array.from(new Set(items.map((item) => item.type)));
+});
+
+/**
+ * Unique set of directors provided by the dataset
+ */
+export const selectDirectors = createSelector(selectTableFeature, ({ items }) => {
+  return Array.from(new Set(items.map((item) => item.director).flat()));
+});
+
+/**
+ * Unique set of release years provided by the dataset
+ */
+export const selectReleaseYear = createSelector(selectTableFeature, ({ items }) => {
+  const allReleaseYears = items.map((item) => item.release_year).filter((releaseYear) => releaseYear);
+
+  return Array.from(new Set(allReleaseYears)); // unique set
+});
+
+/**
+ * Unique set of ratings provided by the dataset
+ */
+export const selectRatings = createSelector(selectTableFeature, ({ items }) => {
+  const allRatings = items.map((item) => item.rating).filter((rating) => rating);
+
+  return Array.from(new Set(allRatings)); // unique set
+});
+
+/**
+ * Unique set of listed in (catories) provided by the dataset
+ */
+export const selectListedIn = createSelector(selectTableFeature, ({ items }) => {
+  return Array.from(new Set(items.map((item) => item.listed_in).flat()));
+});
+
+export const selectShowSettings = createSelector(selectTableFeature, ({ showSettings }) => showSettings);
+
+export const selectFitlers = createSelector(selectTableFeature, ({ filters }) => filters);

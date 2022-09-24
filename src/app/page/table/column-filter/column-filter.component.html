@@ -1,0 +1,6 @@
+<mat-form-field [appearance]="appearance" *ngIf="columnName">
+  <mat-label>{{ columnName | deslugify | cammelCase }}</mat-label>
+  <mat-select (selectionChange)="selectionOnChange($event)" [formControl]="columnsControl" multiple>
+    <mat-option *ngFor="let option of options" [value]="option">{{ option | deslugify }}</mat-option>
+  </mat-select>
+</mat-form-field>

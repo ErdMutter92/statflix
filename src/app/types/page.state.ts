@@ -10,5 +10,6 @@ export type PageState<Item> = {
   items: Item[];
   sort?: Sort;
   search: string;
+  showSettings?: boolean;
   filters: ColumnFilters;
 }

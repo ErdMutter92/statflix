@@ -1,16 +1,20 @@
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
-import { PageState } from 'src/app/types/page.state';
 import {
   selectAvailableColumns,
   selectCurrentPage,
+  selectDirectors,
   selectDisplayedColumns,
+  selectListedIn,
   selectNumbersByRating,
   selectNumbersByReleaseYear,
   selectNumbersByReleaseYearTop15,
   selectPageSize,
+  selectRatings,
+  selectReleaseYear,
   selectSearchTerm,
-  selectTableFeature,
+  selectShowId,
   selectTotalCount,
+  selectTypes,
 } from './table.selectors';
 
 describe('TableSelector', () => {
@@ -186,8 +190,6 @@ describe('TableSelector', () => {
     });
   });
 
-
-
   describe('selectNumbersByReleaseYearTop15', () => {
     it('should return graph dataset of the top 15 release years with the most releases in them', () => {
       expect(
@@ -248,6 +250,71 @@ describe('TableSelector', () => {
         { name: '2008', value: 6 },
         { name: '2007', value: 2 },
       ]);
+    });
+  });
+
+  describe('selectShowId', () => {
+    it('should return unique set of show id', () => {
+      expect(
+        selectShowId.projector({
+          items: [item1, item2, item2],
+        })
+      ).toEqual(['s1', 's2']);
+    });
+  });
+
+  describe('selectTypes', () => {
+    it('should return unique set of types', () => {
+      expect(
+        selectTypes.projector({
+          items: [item1, item2, item2],
+        })
+      ).toEqual(['Movie', 'TV Show']);
+    });
+  });
+
+  describe('selectDirectors', () => {
+    it('should return unique set of types', () => {
+      expect(
+        selectDirectors.projector({
+          items: [item1, item2, item2],
+        })
+      ).toEqual(['Kirsten Johnson', 'Jannet Kirston']);
+    });
+  });
+
+  describe('selectReleaseYear', () => {
+    it('should return unique set of release years', () => {
+      expect(
+        selectReleaseYear.projector({
+          items: [
+            { release_year: "2016" } as NetflixTitle,
+            { release_year: "2015" } as NetflixTitle,
+            { release_year: "2015" } as NetflixTitle,
+            { release_year: "2015" } as NetflixTitle,
+          ],
+        })
+      ).toEqual(['2016', '2015']);
+    });
+  });
+
+  describe('selectRatings', () => {
+    it('should return unique set of ratings', () => {
+      expect(
+        selectRatings.projector({
+          items: [item1, item2, item2],
+        })
+      ).toEqual(['PG-13', 'R']);
+    });
+  });
+
+  describe('selectListedIn', () => {
+    it('should return unique set of listed in', () => {
+      expect(
+        selectListedIn.projector({
+          items: [item1, item2, item2],
+        })
+      ).toEqual(['Documentaries', 'Horror']);
     });
   });
 });

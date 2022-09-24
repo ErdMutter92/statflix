@@ -13,13 +13,18 @@ import { CommonPipesModule } from '../../pipes/common-pipes.module';
 import { ToolbarActionsModule } from './toolbar-actions/toolbar-actions.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SearchTableModule } from './search/search.module';
+import { ColumnFilterComponent } from './column-filter/column-filter.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   providers: [TableDataSource],
-  declarations: [TableComponent],
+  declarations: [TableComponent, ColumnFilterComponent],
   imports: [
     CommonModule,
     MatTableModule,
+    MatSelectModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     MatSortModule,
     TableRoutingModule,
