@@ -10,7 +10,7 @@ describe('NumberCardsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NumberCardsComponent],
-      imports: [NgxChartsModule]
+      imports: [NgxChartsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NumberCardsComponent);
@@ -22,7 +22,6 @@ describe('NumberCardsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
   it('should default data (default: [])', () => {
     expect(component.data).toBeDefined();
     expect(component.data).toEqual([]);
@@ -37,7 +36,7 @@ describe('NumberCardsComponent', () => {
     expect(component.cardColor).toBeDefined();
     expect(component.cardColor).toBe('#40507a');
   });
-  
+
   it('should use updated colors in colorSchema', () => {
     component.colors = ['red', 'blue', 'green', 'yellow'];
     component.ngOnChanges({ colors: true } as any); // smug on change event
@@ -47,7 +46,7 @@ describe('NumberCardsComponent', () => {
       name: jasmine.any(String),
       selectable: jasmine.any(Boolean),
       group: ScaleType.Ordinal,
-      domain: component.colors
+      domain: component.colors,
     });
   });
 });

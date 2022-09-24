@@ -26,18 +26,18 @@ describe('RandomBgComponent', () => {
 
   describe('ngOnInit', () => {
     it('should set backgroundStyle with random asset value', () => {
-      spyOn((component as any), 'getRandomInteger').and.returnValue(1);
+      spyOn(component as any, 'getRandomInteger').and.returnValue(1);
       component.assets = ['0', '1', '2', '3', '4'];
       fixture.detectChanges();
 
       component.ngOnInit();
 
       expect((component as any).getRandomInteger).toHaveBeenCalledWith(0, 4);
-      expect(component.backgroundStyle).toBe('background: url(1);')
+      expect(component.backgroundStyle).toBe('background: url(1);');
     });
 
     it('should pick an asset within the assets array', () => {
-      spyOn((component as any), 'getRandomInteger').and.callThrough();
+      spyOn(component as any, 'getRandomInteger').and.callThrough();
       component.assets = ['0', '1', '2', '3', '4'];
       fixture.detectChanges();
 

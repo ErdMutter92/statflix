@@ -4,7 +4,18 @@ import { Observable } from 'rxjs';
 import { columnSort, loadPage, pageChange, search } from './table.actions';
 import { Store } from '@ngrx/store';
 import { PageState } from 'src/app/types/page.state';
-import { selectCurrentPage, selectDirectors, selectDisplayedColumns, selectListedIn, selectPageSize, selectRatings, selectReleaseYear, selectShowSettings, selectTotalCount, selectTypes } from './table.selectors';
+import {
+  selectCurrentPage,
+  selectDirectors,
+  selectDisplayedColumns,
+  selectListedIn,
+  selectPageSize,
+  selectRatings,
+  selectReleaseYear,
+  selectShowSettings,
+  selectTotalCount,
+  selectTypes,
+} from './table.selectors';
 import { PageEvent } from '@angular/material/paginator';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { Sort } from 'src/app/types/sort.interface';

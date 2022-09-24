@@ -8,11 +8,10 @@ import { selectFitlers } from '../table.selectors';
 import { take } from 'rxjs';
 import { ColumnFilters } from 'src/app/types/page.state';
 
-
 @Component({
   selector: 'app-column-filter',
   templateUrl: './column-filter.component.html',
-  styleUrls: ['./column-filter.component.scss']
+  styleUrls: ['./column-filter.component.scss'],
 })
 export class ColumnFilterComponent implements OnInit {
   @Input()
@@ -29,11 +28,14 @@ export class ColumnFilterComponent implements OnInit {
   constructor(private store: Store) {}
 
   public ngOnInit() {
-    this.store.select(selectFitlers).pipe(take(1)).subscribe((filters: any) => {
-      if (this.columnName) {
-        this.columnsControl.setValue(filters[this.columnName]);
-      }
-    });
+    this.store
+      .select(selectFitlers)
+      .pipe(take(1))
+      .subscribe((filters: any) => {
+        if (this.columnName) {
+          this.columnsControl.setValue(filters[this.columnName]);
+        }
+      });
   }
 
   public selectionOnChange({ value }: MatSelectChange) {

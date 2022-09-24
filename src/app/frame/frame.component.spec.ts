@@ -79,7 +79,7 @@ describe('FrameComponent', () => {
   describe('sidenavOnOpenChange', () => {
     const possibleEvent = [true, false];
 
-    possibleEvent.forEach(event => {
+    possibleEvent.forEach((event) => {
       it(`should set the showSidenav (event: ${event})`, () => {
         component.showSidenav = !event; // set to oposite;
         component.sidenavOnOpenedChange(event);

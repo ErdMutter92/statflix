@@ -47,11 +47,7 @@ describe('TableComponent', () => {
     page: 0,
     pageSize: 1,
     filters: {},
-    items: [
-      datasource[0],
-      datasource[2],
-      datasource[3],
-    ],
+    items: [datasource[0], datasource[2], datasource[3]],
   };
 
   beforeEach(async () => {

@@ -1,5 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
-import { addFilterColumn, columnSort, columnsVisible, loadPage, pageChange, removeFilterColumn, search, toggleTableSettings } from './table.actions';
+import {
+  addFilterColumn,
+  columnSort,
+  columnsVisible,
+  loadPage,
+  pageChange,
+  removeFilterColumn,
+  search,
+  toggleTableSettings,
+} from './table.actions';
 import { PageState } from 'src/app/types/page.state';
 import { NetflixTitle } from 'src/app/types/netflix-title.interface';
 import { datasource } from './table.data';
@@ -23,7 +32,13 @@ export const tableReducer = createReducer(
   on(columnSort, (state, sort): PageState<NetflixTitle> => ({ ...state, sort, page: 0 })),
   on(search, (state, { search }): PageState<NetflixTitle> => ({ ...state, search, page: 0 })),
   on(columnsVisible, (state, { displayedColumns }): PageState<NetflixTitle> => ({ ...state, displayedColumns })),
-  on(addFilterColumn, (state, { columnName, value }): PageState<NetflixTitle> => ({...state, filters: { ...state.filters, [columnName]: value } })),
+  on(
+    addFilterColumn,
+    (state, { columnName, value }): PageState<NetflixTitle> => ({
+      ...state,
+      filters: { ...state.filters, [columnName]: value },
+    })
+  ),
   on(removeFilterColumn, (state, { columnName }): PageState<NetflixTitle> => {
     /**
      * NOTE: If we consider the state that is passed in as current state,
@@ -33,7 +48,7 @@ export const tableReducer = createReducer(
      * it, so an additional spread operator is not needed.
      */
     const { [columnName]: omit, ...filters } = state.filters;
-    return {...state, filters };
+    return { ...state, filters };
   }),
-  on(toggleTableSettings, (state): PageState<NetflixTitle> => ({...state, showSettings: !state.showSettings })),
+  on(toggleTableSettings, (state): PageState<NetflixTitle> => ({ ...state, showSettings: !state.showSettings }))
 );

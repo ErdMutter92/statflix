@@ -12,4 +12,4 @@ export type PageState<Item> = {
   search: string;
   showSettings?: boolean;
   filters: ColumnFilters;
-}
+};

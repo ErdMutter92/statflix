@@ -197,14 +197,16 @@ describe('TableDataSource', () => {
   it('should contain the listedIn', () => {
     expect(service.listedIn).toBeDefined();
 
-    const expected = hot('(0)', [[
-      'Documentaries',
-      'International TV Shows',
-      'TV Dramas',
-      'TV Mysteries',
-      'Crime TV Shows',
-      'TV Action & Adventure'
-    ]]);
+    const expected = hot('(0)', [
+      [
+        'Documentaries',
+        'International TV Shows',
+        'TV Dramas',
+        'TV Mysteries',
+        'Crime TV Shows',
+        'TV Action & Adventure',
+      ],
+    ]);
 
     expect(service.listedIn).toBeObservable(expected);
   });
@@ -212,18 +214,9 @@ describe('TableDataSource', () => {
   it('should contain the displayed columns', () => {
     expect(service.displayedColumns).toBeDefined();
 
-    const expected = hot('(0)', [[
-      'show_id',
-      'type',
-      'title',
-      'director',
-      'cast',
-      'country',
-      'release_year',
-      'rating',
-      'duration',
-      'listed_in',
-    ]]);
+    const expected = hot('(0)', [
+      ['show_id', 'type', 'title', 'director', 'cast', 'country', 'release_year', 'rating', 'duration', 'listed_in'],
+    ]);
 
     expect(service.displayedColumns).toBeObservable(expected);
   });

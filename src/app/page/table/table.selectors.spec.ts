@@ -102,7 +102,7 @@ describe('TableSelector', () => {
           sort: { active: 'show_id', direction: 'asc' },
         })
       ).toEqual(expected);
-    })
+    });
   });
 
   describe('selectPageSize', () => {
@@ -184,9 +184,7 @@ describe('TableSelector', () => {
         selectNumbersByReleaseYear.projector({
           items: [item1, item2],
         })
-      ).toEqual([
-        { name: '2020', value: 2 }
-      ]);
+      ).toEqual([{ name: '2020', value: 2 }]);
     });
   });
 
@@ -195,42 +193,42 @@ describe('TableSelector', () => {
       expect(
         selectNumbersByReleaseYearTop15.projector({
           items: [
-            { release_year: "2022" } as NetflixTitle,
-            { release_year: "2016" } as NetflixTitle,
-            { release_year: "2015" } as NetflixTitle,
-            { release_year: "2015" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
-            { release_year: "2012" } as NetflixTitle,
-            { release_year: "2011" } as NetflixTitle,
-            { release_year: "2011" } as NetflixTitle,
-            { release_year: "2010" } as NetflixTitle,
-            { release_year: "2010" } as NetflixTitle,
-            { release_year: "2009" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
-            { release_year: "2009" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
-            { release_year: "2007" } as NetflixTitle,
-            { release_year: "2019" } as NetflixTitle,
-            { release_year: "2018" } as NetflixTitle,
-            { release_year: "2007" } as NetflixTitle,
-            { release_year: "2014" } as NetflixTitle,
-            { release_year: "2014" } as NetflixTitle,
-            { release_year: "2013" } as NetflixTitle,
-            { release_year: "2013" } as NetflixTitle,
-            { release_year: "2012" } as NetflixTitle,
-            { release_year: "2022" } as NetflixTitle,
-            { release_year: "2021" } as NetflixTitle,
-            { release_year: "2020" } as NetflixTitle,
-            { release_year: "2020" } as NetflixTitle,
-            { release_year: "2019" } as NetflixTitle,
-            { release_year: "2018" } as NetflixTitle,
-            { release_year: "2017" } as NetflixTitle,
-            { release_year: "2017" } as NetflixTitle,
-            { release_year: "2017" } as NetflixTitle,
-            { release_year: "2016" } as NetflixTitle,
-            { release_year: "2008" } as NetflixTitle,
+            { release_year: '2022' } as NetflixTitle,
+            { release_year: '2016' } as NetflixTitle,
+            { release_year: '2015' } as NetflixTitle,
+            { release_year: '2015' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
+            { release_year: '2012' } as NetflixTitle,
+            { release_year: '2011' } as NetflixTitle,
+            { release_year: '2011' } as NetflixTitle,
+            { release_year: '2010' } as NetflixTitle,
+            { release_year: '2010' } as NetflixTitle,
+            { release_year: '2009' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
+            { release_year: '2009' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
+            { release_year: '2007' } as NetflixTitle,
+            { release_year: '2019' } as NetflixTitle,
+            { release_year: '2018' } as NetflixTitle,
+            { release_year: '2007' } as NetflixTitle,
+            { release_year: '2014' } as NetflixTitle,
+            { release_year: '2014' } as NetflixTitle,
+            { release_year: '2013' } as NetflixTitle,
+            { release_year: '2013' } as NetflixTitle,
+            { release_year: '2012' } as NetflixTitle,
+            { release_year: '2022' } as NetflixTitle,
+            { release_year: '2021' } as NetflixTitle,
+            { release_year: '2020' } as NetflixTitle,
+            { release_year: '2020' } as NetflixTitle,
+            { release_year: '2019' } as NetflixTitle,
+            { release_year: '2018' } as NetflixTitle,
+            { release_year: '2017' } as NetflixTitle,
+            { release_year: '2017' } as NetflixTitle,
+            { release_year: '2017' } as NetflixTitle,
+            { release_year: '2016' } as NetflixTitle,
+            { release_year: '2008' } as NetflixTitle,
           ],
         })
       ).toEqual([
@@ -288,10 +286,10 @@ describe('TableSelector', () => {
       expect(
         selectReleaseYear.projector({
           items: [
-            { release_year: "2016" } as NetflixTitle,
-            { release_year: "2015" } as NetflixTitle,
-            { release_year: "2015" } as NetflixTitle,
-            { release_year: "2015" } as NetflixTitle,
+            { release_year: '2016' } as NetflixTitle,
+            { release_year: '2015' } as NetflixTitle,
+            { release_year: '2015' } as NetflixTitle,
+            { release_year: '2015' } as NetflixTitle,
           ],
         })
       ).toEqual(['2016', '2015']);

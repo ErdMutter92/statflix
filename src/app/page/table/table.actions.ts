@@ -17,6 +17,6 @@ export const columnsVisible = createAction(
   '[table] column visibility',
   props<{ displayedColumns: (keyof NetflixTitle)[] }>()
 );
-export const addFilterColumn = createAction('[table] add filter', props<{ columnName: string, value: string[] }>());
+export const addFilterColumn = createAction('[table] add filter', props<{ columnName: string; value: string[] }>());
 export const removeFilterColumn = createAction('[table] remove filter', props<{ columnName: string }>());
 export const toggleTableSettings = createAction('[table] toggle settings');

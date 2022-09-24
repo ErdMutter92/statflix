@@ -44,7 +44,7 @@ describe('GraphsComponent', () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
       declarations: [GraphsComponent, NumberCardsComponent, GaugeComponent],
-      imports: [NgxChartsModule]
+      imports: [NgxChartsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GraphsComponent);
@@ -59,11 +59,13 @@ describe('GraphsComponent', () => {
   it('should observe ratingsByNumbers from the store', () => {
     expect(component.ratingsByNumbers).toBeDefined();
 
-    const expected = hot('(0)', [[
-      { name: 'PG', value: 1 },
-      { name: 'PG-13', value: 2},
-      { name: 'R', value: 3 }
-    ]]);
+    const expected = hot('(0)', [
+      [
+        { name: 'PG', value: 1 },
+        { name: 'PG-13', value: 2 },
+        { name: 'R', value: 3 },
+      ],
+    ]);
 
     expect(component.ratingsByNumbers).toBeObservable(expected);
   });
@@ -71,11 +73,13 @@ describe('GraphsComponent', () => {
   it('should observe releaseYearsByNumbers from the store', () => {
     expect(component.releaseYearsByNumbers).toBeDefined();
 
-    const expected = hot('(0)', [[
-      { name: '2022', value: 3 },
-      { name: '2021', value: 2 },
-      { name: '2020', value: 1 }
-    ]]);
+    const expected = hot('(0)', [
+      [
+        { name: '2022', value: 3 },
+        { name: '2021', value: 2 },
+        { name: '2020', value: 1 },
+      ],
+    ]);
 
     expect(component.releaseYearsByNumbers).toBeObservable(expected);
   });

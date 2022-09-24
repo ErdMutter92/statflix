@@ -50,7 +50,15 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
       declarations: [DashboardComponent, ColumnSelectorComponent, DeslugifyPipe],
-      imports: [NoopAnimationsModule, ReactiveFormsModule, TableModule, GraphsModule, MatToolbarModule, MatSelectModule, StoreModule.forRoot({})],
+      imports: [
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        TableModule,
+        GraphsModule,
+        MatToolbarModule,
+        MatSelectModule,
+        StoreModule.forRoot({}),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);
@@ -73,11 +81,13 @@ describe('DashboardComponent', () => {
   it('should observe retings from the store', () => {
     expect(component.ratings).toBeDefined();
 
-    const expected = hot('(0)', [[
-      { name: 'PG', value: 1 },
-      { name: 'PG-13', value: 2},
-      { name: 'R', value: 3 }
-    ]]);
+    const expected = hot('(0)', [
+      [
+        { name: 'PG', value: 1 },
+        { name: 'PG-13', value: 2 },
+        { name: 'R', value: 3 },
+      ],
+    ]);
 
     expect(component.ratings).toBeObservable(expected);
   });

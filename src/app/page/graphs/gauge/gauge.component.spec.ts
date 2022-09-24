@@ -56,7 +56,7 @@ describe('GaugeComponent', () => {
       name: jasmine.any(String),
       selectable: jasmine.any(Boolean),
       group: ScaleType.Ordinal,
-      domain: component.colors
+      domain: component.colors,
     });
   });
 });

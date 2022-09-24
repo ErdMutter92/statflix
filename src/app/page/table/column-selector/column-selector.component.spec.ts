@@ -31,7 +31,7 @@ describe('ColumnSelectorComponent', () => {
     await TestBed.configureTestingModule({
       providers: [provideMockStore({ initialState: { table: initialState } })],
       declarations: [ColumnSelectorComponent],
-      imports: [NoopAnimationsModule, ReactiveFormsModule, CommonPipesModule, MatSelectModule]
+      imports: [NoopAnimationsModule, ReactiveFormsModule, CommonPipesModule, MatSelectModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ColumnSelectorComponent);
@@ -46,9 +46,7 @@ describe('ColumnSelectorComponent', () => {
   it('should observe displayedColumns from the store', () => {
     expect(component.displayedColumns).toBeDefined();
 
-    const expected = hot('(0)', [[
-      'show_id', 'type'
-    ]]);
+    const expected = hot('(0)', [['show_id', 'type']]);
 
     expect(component.displayedColumns).toBeObservable(expected);
   });
@@ -56,9 +54,7 @@ describe('ColumnSelectorComponent', () => {
   it('should observe available columns from the store', () => {
     expect(component.options).toBeDefined();
 
-    const expected = hot('(0)', [[
-      'show_id', 'type', 'rating', 'release_year'
-    ]]);
+    const expected = hot('(0)', [['show_id', 'type', 'rating', 'release_year']]);
 
     expect(component.options).toBeObservable(expected);
   });
